@@ -1,0 +1,48 @@
+.social
+	margin-bottom: 26px
+
+	&__list
+		display: flex
+	
+	&__item
+		margin-right: 30px
+
+		&:last-child
+			margin-right: 0
+
+	&__link
+		font-size: 0
+		line-height: 0
+		display: inline-block
+		transition: .5s opacity, .5s filter
+		opacity: .25
+		filter: brightness(0)
+		vertical-align: middle
+
+		&:hover
+			opacity: 1
+			filter: brightness(100%)
+
+		&--fb
+			height: 16px
+			width: 16px
+			background-image: inline('fb.svg')
+			background-size: 16px 16px
+
+		&--yu
+			width: 20px
+			height: 14px
+			background-image: inline('youtube.svg')
+			background-size: 20px 14px
+
+		&--ln
+			width: 16px
+			height: 16px
+			background-image: inline('linkedin.svg')
+			background-size: 16px 16px
+		
+		&--in
+			width: 16px
+			height: 16px
+			background-image: inline('instagram.svg')
+			background-size: 16px 16px 

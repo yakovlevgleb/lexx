@@ -1,0 +1,56 @@
+.developers
+	position: relative
+
+	text-align: left
+
+	margin-top: auto
+
+	&__href
+		position: relative
+
+		display: inline-block
+
+		transition: color 0.5s
+		text-decoration: none
+		letter-spacing: 1.6px
+		text-transform: uppercase
+		padding-left: 85px
+
+		color: rgba(0,0,0, .5)
+
+		font-family: Verdana, Geneva, sans-serif
+		font-size: 9px
+		line-height: 14px
+
+		&:hover
+			.developers__dextra
+				background-color: #034ea2
+ 
+	&__dextra
+		position: absolute
+		top: 50%
+		left: 0
+
+		padding-right: 5px
+		padding-left: 6px
+
+		transition: background-color .5s, color .5s
+		transform: translate(0, -50%)
+
+
+		color: white
+		background-color: #e2e2e2
+
+		font-family: Arial, Helvetica, sans-serif
+		font-size: 12px
+		font-weight: 900
+		line-height: 21px
+
+@media only screen and (max-width: 900px)
+	.developers
+		&__href
+			padding-left: 85px
+		&__dextra
+			left: 0
+
+			transform: translate(0, -50%);

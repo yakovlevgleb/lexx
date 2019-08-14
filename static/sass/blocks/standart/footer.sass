@@ -1,0 +1,84 @@
+.footer
+	border-top: 1px solid #f1f1f1
+	padding: 35px 0
+
+	.wrapper
+		display: flex
+
+	&__left
+		display: flex
+		flex-direction: column
+		width: calc(100% / 4 - 36px)
+		margin-right: 36px
+
+	&__copyrights
+		font-size: 15px
+		line-height: 21px
+		color: $black
+		margin-bottom: 22px
+
+	&__adress
+		font-size: 15px
+		line-height: 21px
+		color: $black
+		margin-bottom: 20px
+	
+	&__phones
+		display: flex
+		flex-direction: column
+		margin-bottom: 13px
+	
+	&__phones-link
+		font-size: 16px
+		line-height: 20px
+		font-weight: 600
+		color: $black
+		display: inline-block
+		margin-bottom: 2px
+
+	&__emails-link
+		color: $main-blue
+		font-size: 15px
+		line-height: 21px
+		border-bottom: 1px solid $border-bottom
+		transition: .5s border-color
+
+		&:hover
+			border-color: $t
+		
+	&__nav
+		width: calc((100% / 4) * 3)
+
+	&__nav-list
+		columns: 3
+
+	&__nav-item
+		margin-right: 36px
+		margin-bottom: 31px
+
+	&__nav-link
+		font-size: 16px
+		line-height: 21px
+		font-weight: 600
+		color: $black
+		display: inline-block
+		transition: .5s color
+
+		&:hover
+			color: $main-blue
+	
+	&__nav-sublist
+		margin-top: 15px
+	
+	&__nav-subitem
+		margin-bottom: 14px
+
+	&__nav-sublink
+		font-size: 15px
+		line-height: 21px
+		color: $gray-text
+		display: inline-block
+		transition: .5s color
+
+		&:hover
+			color: $main-blue

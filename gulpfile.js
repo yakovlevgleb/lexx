@@ -48,6 +48,7 @@ const assets = require('postcss-assets');
 const babel = require('gulp-babel');
 const sortCSSmq = require('sort-css-media-queries');
 const willChange = require('postcss-will-change');
+const pxtoviewport = require('postcss-px-to-viewport');
 
 gulp.task('clean', function() {
 	return del(dirs.build);
@@ -55,6 +56,10 @@ gulp.task('clean', function() {
 
 gulp.task('sass', function () {
 	var processors = [
+		pxtoviewport({
+			unitToConvert: 'px',
+			viewportWidth: 1920
+		}),
 		willChange,
 		short,
 		focus,

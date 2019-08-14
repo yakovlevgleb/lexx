@@ -1,0 +1,26 @@
+root = true
+
+[*]
+end_of_line = lf
+charset = utf-8
+insert_final_newline = true
+
+[*.{css,less,scss}]
+indent_style = tab
+indent_size = 2
+
+[*.{hbs,stache,mustache,jade,pug,html,xml}]
+indent_style = tab
+indent_size = 3
+
+[*.{js,coffee}]
+indent_style = tab
+indent_size = 3
+
+[*.json]
+indent_style = tab
+indent_size = 3
+
+[*.{md,txt}]
+indent_style = tab
+trim_trailing_whitespace = false

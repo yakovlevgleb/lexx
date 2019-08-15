@@ -58,7 +58,14 @@ gulp.task('sass', function () {
 	var processors = [
 		pxtoviewport({
 			unitToConvert: 'px',
-			viewportWidth: 1920
+			viewportWidth: 1920,
+			selectorBlackList: [],
+		}),
+		pxtoviewport({
+			unitToConvert: 'pxl',
+			viewportWidth: 1920,
+			selectorBlackList: [],
+			mediaQuery: true,
 		}),
 		willChange,
 		short,

@@ -216,7 +216,8 @@
 }
 
 .choices__list--dropdown {
-	display: none;
+	visibility: hidden;
+	opacity: 0;
 	z-index: 11;
 	position: absolute;
 	width: 100%;
@@ -230,10 +231,12 @@
 	word-break: break-all;
 	border-bottom-right-radius: 5px;
 	border-bottom-left-radius: 5px;
+	transition: .8s visibility, .8s opacity
 }
 
 .choices__list--dropdown.is-active {
-	display: block;
+	visibility: visible;
+	opacity: 1;
 }
 
 .is-open .choices__list--dropdown {

@@ -1,0 +1,73 @@
+.nav
+	&__list
+		display: flex
+	
+	&__item
+		margin-right: 23px
+		position: relative
+
+		&:last-child
+			margin-right: 0
+
+		&:hover
+			.nav__sublist
+				visibility: visible
+				opacity: 1
+
+		&.active
+			.nav__link
+				opacity: .5
+
+		&:before
+			content: ''
+			position: absolute
+			bottom: -20px
+			height: 20px
+			width: 100%
+	
+	&__link
+		font-size: 16px
+		line-height: 1
+		color: $white
+		font-weight: 500
+		transition: .5s opacity
+		opacity: 1
+
+		&:hover
+			opacity: .5
+
+	&__sublist
+		position: absolute
+		left: -20px
+		top: calc(100% + 16px)
+		background-color: $dark-blue
+		padding: 25px 20px
+		z-index: 1
+		visibility: hidden
+		opacity: 0
+		transition: .8s visibility, .8s opacity
+
+		&:hover
+			visibility: visible
+			opacity: 1
+
+	&__subitem
+		margin-bottom: 14px
+		&.active
+			.nav__sublink
+				opacity: .5
+
+		&:last-child
+			margin-bottom: 0
+
+	&__sublink
+		font-size: 15px
+		line-height: 21px
+		color: $white
+		opacity: 1
+		transition: .5s opacity
+		display: block
+		white-space: nowrap
+
+		&:hover
+			opacity: .5

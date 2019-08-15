@@ -1,47 +1,99 @@
 mixin header
 	header.header
-		.wrapper
-			.header__top
-				nav.nav
-					ul.nav__list
-						li.nav__item
-							a(href="#").nav__link Компания
-						li.nav__item
-							a(href="#").nav__link Компания
-						li.nav__item
-							a(href="#").nav__link Компания
-						li.nav__item
-							a(href="#").nav__link Компания
-						li.nav__item
-							a(href="#").nav__link Компания
-						li.nav__item
-							a(href="#").nav__link Компания
-						li.nav__item
-							a(href="#").nav__link Компания
-							ul.nav__sublist
-								li.nav__subotem
-									a(href="#").nav__sublink Медиа кит
-								li.nav__subotem
-									a(href="#").nav__sublink Пресс-офис
-								li.nav__subotem
-									a(href="#").nav__sublink Условия использования
-								li.nav__subotem
-									a(href="#").nav__sublink Брошюра
-				.header__btns
-					button(type="button").header__btn.header__btn--search
-					button(type="button").header__btn.header__btn--message
-			.header__bottom
-				.logo
-					a(href="#").logo__link
-						img(src="", alt="")
-				.header__info
-					.header__language
-						select.header__language-select
-							option Русский
-							option Английский
-							option Испанский
-							option Португальский
-							option Арабский
-							option Немецкий
-							option Индийский
-					a(href="tel:83432270205").header__tel +7 (343) 227-02-05
+		.header__top
+			nav.nav
+				ul.nav__list
+					li.nav__item
+						a(href="#").nav__link Компания
+					li.nav__item
+						a(href="#").nav__link Продукция
+						ul.nav__sublist
+							li.nav__subitem.active
+								a(href="#").nav__sublink Системы энергосбережения и стабилизации электрического тока
+							li.nav__subitem
+								a(href="#").nav__sublink Системы оперативного постоянного тока
+							li.nav__subitem
+								a(href="#").nav__sublink Источники бесперебойного питания
+							li.nav__subitem
+								a(href="#").nav__sublink Системы гарантированного электроснабжения удаленных объектов
+							li.nav__subitem
+								a(href="#").nav__sublink Системы и решения в области АСУТП
+							li.nav__subitem
+								a(href="#").nav__sublink Центры обработки данных
+							li.nav__subitem
+								a(href="#").nav__sublink Редокс-поточные накопители энергии
+							li.nav__subitem
+								a(href="#").nav__sublink Системы электроснабжения на топливных элементах CH4
+					li.nav__item
+						a(href="#").nav__link Решения
+					li.nav__item
+						a(href="#").nav__link Реализованные проекты
+					li.nav__item
+						a(href="#").nav__link Покупателям
+					li.nav__item
+						a(href="#").nav__link Инвесторам
+						ul.nav__sublist
+							li.nav__subitem.active
+								a(href="#").nav__sublink Устав и документы АО «ЛЕКС Технолоджи»
+							li.nav__subitem
+								a(href="#").nav__sublink Корпоративное управление
+							li.nav__subitem
+								a(href="#").nav__sublink Собрания акционеров
+							li.nav__subitem
+								a(href="#").nav__sublink Акции
+							li.nav__subitem
+								a(href="#").nav__sublink Облигации
+							li.nav__subitem
+								a(href="#").nav__sublink Дивиденды
+							li.nav__subitem
+								a(href="#").nav__sublink Отношения с кредиторами
+							li.nav__subitem
+								a(href="#").nav__sublink Раскрытие информации
+							li.nav__subitem
+								a(href="#").nav__sublink Структура компании
+							li.nav__subitem
+								a(href="#").nav__sublink Годовые отчеты
+							li.nav__subitem
+								a(href="#").nav__sublink Финансовый календарь
+							li.nav__subitem
+								a(href="#").nav__sublink Презентации
+							li.nav__subitem
+								a(href="#").nav__sublink Часто задаваемые впросы акционеров
+							li.nav__subitem
+								a(href="#").nav__sublink Аналитики
+							li.nav__subitem
+								a(href="#").nav__sublink Контактная информация для инвесторов
+					li.nav__item.active
+						a(href="#").nav__link Медиа
+						ul.nav__sublist
+							li.nav__subitem.active
+								a(href="#").nav__sublink Медиа кит
+							li.nav__subitem
+								a(href="#").nav__sublink Пресс-офис
+							li.nav__subitem
+								a(href="#").nav__sublink Условия использования
+							li.nav__subitem
+								a(href="#").nav__sublink Брошюра
+					li.nav__item
+						a(href="#").nav__link Login
+					li.nav__item
+						a(href="#").nav__link Контакты
+			.header__btns
+				button(type="button").header__btn.header__btn--search
+				button(type="button").header__btn.header__btn--message
+		.header__bottom
+			.logo
+				a(href="#").logo__link
+					img(src="./img/logo-white.png", alt="")
+			.header__info
+				.header__language
+					span Язык/Language:
+					select.header__language-select.js-single-choice
+						option Русский
+						option Английский
+						option Испанский
+						option Португальский
+						option Арабский
+						option Немецкий
+						option Индийский
+				a(href="tel:83432270205").header__tel +7 (343) 227-02-05

@@ -1,0 +1,44 @@
+mixin icatalog
+	section.icatalog
+		.wrapper
+			.icatalog__container
+				.icatalog__imgs
+					.swiper-container.js-icatalog-imgs
+						.swiper-wrapper
+							.swiper-slide.icatalog__imgs-item
+								img(src="./img/icatalog-img.jpg", alt="")
+							.swiper-slide.icatalog__imgs-item
+								img(src="./img/hero-slider-img1.jpg", alt="")
+							.swiper-slide.icatalog__imgs-item
+								img(src="./img/icatalog-img.jpg", alt="")
+				
+				.icatalog__slider
+					.swiper-container.js-icatalog-slider
+						.swiper-wrapper
+							.swiper-slide.icatalog__slide
+								a(href="#").icatalog__slider-link
+								.icatalog__slider-name 
+									span Системы энергосбережения и стабилизации электрического тока
+								img(src="./img/icatalog-icon2.png", alt="").icatalog__slider-icon
+
+							.swiper-slide.icatalog__slide
+								a(href="#").icatalog__slider-link
+								.icatalog__slider-name
+									span Системы оперативного постоянного тока
+								img(src="./img/icatalog-icon1.png", alt="").icatalog__slider-icon
+							
+							.swiper-slide.icatalog__slide
+								a(href="#").icatalog__slider-link
+								.icatalog__slider-name
+									span Что-то новое
+								img(src="./img/icatalog-icon2.png", alt="").icatalog__slider-icon
+						
+					.swiper-buttons
+						.swiper-button-prev
+						.swiper-button-next
+
+			.icatalog__footer
+				.icatalog__text
+					p Все оборудование производимое на территории РФ компанией LEXX Technology и её дочерними обществами имеет необходимые сертификаты, лицензии и разрешения для производства и реализации.
+
+				a(href="#").icatalog__link Весь каталог

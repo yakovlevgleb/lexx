@@ -1,0 +1,128 @@
+.icatalog
+	padding-top: 100px
+	margin-bottom: 94px
+
+	&__footer
+		display: flex
+		flex-direction: row
+		justify-content: space-between
+
+	&__text
+		max-width: 870px
+		font-size: 18px
+		line-height: 24px
+		color: $white
+		font-weight: normal
+
+	&__link
+		font-size: 18px
+		line-height: 24px
+		font-weight: 500
+		color: $white
+		border-bottom: 1px solid rgba(255,255,255,.25)
+		transition: .5s border-color
+		align-self: flex-start
+
+		&:hover
+			border-color: $t
+	
+	&__container
+		position: relative
+		padding-top: calc(640px - 350px)
+		margin-bottom: 46px
+	
+	&__imgs
+		position: absolute
+		left: 0
+		top: 0
+
+		img
+			height: 640px
+			width: 1012px
+			object-fit: cover
+			font-family: 'object-fit: cover;'
+	
+	&__slider
+		display: flex
+		max-width: 1012px
+		margin-left: auto
+		position: relative
+
+		.swiper-buttons
+			display: flex
+			justify-content: flex-end
+			position: absolute
+			right: 253px
+			top: -161px
+			width: auto
+			transform: translateX(50%)
+			z-index: 1
+
+		.swiper-button-prev
+			position: static
+			background-image: inline('hero-next-btn.svg')
+			background-size: 45px 34px
+			width: 45px
+			height: 34px
+			transform: rotate(180deg) translateX(0)
+			margin-right: 36px
+			margin-top: 0
+			transition: .5s transform
+			will-change: transform
+
+			&:hover
+				transform: rotate(180deg) translateX(15px)
+
+		.swiper-button-next
+			position: static
+			background-image: inline('hero-next-btn.svg')
+			background-size: 45px 34px
+			width: 45px
+			height: 34px
+			margin-top: 0
+			transform: translateX(0)
+			transition: .5s transform
+			will-change: transform
+
+			&:hover
+				transform: translateX(15px)
+
+	&__slide
+		height: 350px
+		background-color: $dark-blue
+		padding: 40px 50px
+		padding-top: 35px
+		display: flex
+		flex-direction: column
+		justify-content: space-between
+		align-items: flex-start
+		position: relative
+		box-sizing: border-box
+
+		&:nth-child(2n+2)
+			background-color: $darker-blue
+		
+		&:hover
+			.icatalog
+				&__slider-name
+					span
+						border-color: $t
+
+	&__slider-link
+		position: absolute
+		left: 0
+		top: 0
+		bottom: 0
+		right: 0
+
+	&__slider-name
+		span
+			font-size: 22px
+			line-height: 26px
+			font-weight: 500
+			color: $white
+			border-bottom: 1px solid rgba(255,255,255,.25)
+			transition: .5s border-color
+
+	&__imgs
+		width: 934px

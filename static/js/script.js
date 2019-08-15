@@ -124,6 +124,109 @@
 		});
 	}
 
+	window.lexx.obj = ({
+		init: function () {
+			if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
+				document.body.classList.add('ff')
+			}
+		}
+	}).init();
+
+	window.lexx.choises = ({
+		init: function () {
+			var select = document.querySelectorAll('.js-single-choice');
+
+			select.forEach(function (el) {
+				var choice = new Choices(el, {
+					searchEnabled: false,
+					itemSelectText: '',
+					position: 'bottom',
+					shouldSort: false,
+				});
+			});
+		}
+	}).init();
+
+	window.lexx.swiper = ({
+		init: function () {
+			var heroSlider = document.querySelector('.js-hero-slider'),
+				icatalogSlider = document.querySelector('.js-icatalog-slider'),
+				icatalogImgs = document.querySelector('.js-icatalog-imgs');
+
+			if (heroSlider) {
+				new Swiper(heroSlider, {
+					slidesPerView: 1,
+					loop: true,
+					speed: 1200,
+					effect: 'coverflow',
+					coverflowEffect: {
+						rotate: 70,
+						depth: 1000
+					},
+					navigation: {
+						nextEl: '.js-hero-slider .swiper-button-next',
+						prevEl: '.js-hero-slider .swiper-button-prev',
+					},
+				});	
+			}
+
+			if (icatalogSlider) {
+				var icatalog = new Swiper(icatalogSlider, {
+					slidesPerView: 2,
+					loop: true,
+					speed: 1200,
+					coverflowEffect: {
+						rotate: 70,
+						depth: 1000
+					},
+					navigation: {
+						nextEl: '.icatalog__slider .swiper-button-next',
+						prevEl: '.icatalog__slider .swiper-button-prev',
+					},
+					loopAdditionalSlides: 1
+				});
+
+				icatalog.on('slideChangeTransitionStart', function () {
+					icatalogIMGs.slideToLoop(this.realIndex, 1200)
+				})
+			}
+
+			if (icatalogImgs) {
+				var icatalogIMGs = new Swiper(icatalogImgs, {
+					speed: 1200,
+					loop: true,
+					slidesPerView: 1,
+					effect: 'coverflow',
+					coverflowEffect: {
+						rotate: 70,
+						depth: 1000
+					},
+					simulateTouch: false,
+					touchRatio: 0,
+					loopAdditionalSlides: 1
+				});
+			}
+
+		}
+	}).init();
+
+	window.lexx.playVideo = ({
+		init: function () {
+			var playVideo = document.querySelectorAll('.js-play-video');
+
+			if (playVideo) {
+				playVideo.forEach(function (item) {
+					item.addEventListener('click', function () {
+						var parent = this;
+						fadeOut(item, 0);
+						parent.parentElement.parentNode.querySelector('video').setAttribute("controls", "controls");
+						parent.parentElement.parentNode.querySelector('video').play();
+					})
+				});
+			}
+		}
+	}).init();
+
 	// window.lexx.form = ({
 
 	// 	init: function () {
@@ -259,19 +362,6 @@
 	// 	}
 	// }).init();
 
-	// window.barter.choices = ({
-	// 	init: function () {
-	// 		var choices = document.querySelectorAll('.js-choice');
-	// 		choices.forEach(function (item) {
-	// 			if (item) {
-	// 				new Choices(item, {
-	// 					noResultsText: 'Не найдено'
-	// 				})
-	// 			}
-	// 		})
-	// 	}
-	// }).init();
-
 	// window.barter.checkPhone = ({
 	// 	init: function () {
 	// 		var phoneMask = document.querySelectorAll('.js-phone-mask');
@@ -329,33 +419,6 @@
 	// 			document.addEventListener('click', handler);
 	// 		};
 
-	// 	}
-	// }).init();
-
-	// window.barter.swiper = ({
-	// 	init: function () {
-	// 		var partnersSlider = document.querySelector('.js-partners-slider'),
-	// 			dealSlider = document.querySelectorAll('.js-deal-slider');
-
-	// 		if (partnersSlider) {
-	// 			new Swiper(partnersSlider, {
-	// 				slidesPerView: 'auto',
-	// 				loop: true,
-	// 				speed: 800,
-	// 				centeredSlides: true
-	// 			});
-	// 		}
-
-	// 		if (dealSlider) {
-	// 			dealSlider.forEach(function (item) {
-	// 				new Swiper(item, {
-	// 					slidesPerView: 'auto',
-	// 					loop: true,
-	// 					speed: 800,
-	// 					centeredSlides: true
-	// 				});
-	// 			});
-	// 		}
 	// 	}
 	// }).init();
 

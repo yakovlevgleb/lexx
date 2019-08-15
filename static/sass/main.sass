@@ -41,7 +41,7 @@ button,
 input,
 textarea
 	background-color: transparent
-	border: 0
+	border: none
 	outline: none
 	border-radius: 0
 	box-shadow: none
@@ -57,3 +57,17 @@ textarea
 .wrapper
 	max-width: 1440px
 	margin: 0 auto
+
+.ff
+	.footer
+		&__nav-item
+			break-inside: avoid
+
+.logo
+	&__link
+		display: inline-block
+		font-size: 0
+		line-height: 0
+
+.blue
+	background-color: $main-blue

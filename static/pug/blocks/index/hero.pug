@@ -1,2 +1,21 @@
 mixin hero
 	section.hero
+		.swiper-container.js-hero-slider
+			.swiper-wrapper
+				.swiper-slide.hero__slide(style="background-image: url('./img/hero-slider-img1.jpg')")
+					.wrapper
+						p.hero__title Реализация проектов в области электроснабжения
+				.swiper-slide.hero__slide(style="background-image: url('./img/hero-slider-img1.jpg')")
+					.wrapper
+						p.hero__title Второй слайд
+
+			.swiper-buttons
+				.swiper-button-prev
+				.swiper-button-next
+
+		.wrapper
+			.hero__catalog-items
+				a(href="#").hero__catalog-item
+					span Системы энергосбережения и стабилизации электрического тока
+				a(href="#").hero__catalog-item
+					span Системы оперативного постоянного тока 

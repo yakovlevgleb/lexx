@@ -14,8 +14,8 @@ const jsList = [
 	dirs.source + '/js/ext/imask.js',
 	dirs.source + '/js/ext/ofi.js',
 	dirs.source + '/js/ext/perfect-scrollbar.min.js',
-	dirs.source + '/js/ext/moment.min.js',
-	dirs.source + '/js/ext/lightpick.js'
+	// dirs.source + '/js/ext/moment.min.js',
+	// dirs.source + '/js/ext/lightpick.js'
 ];
 
 const folder = process.env.folder;
@@ -62,7 +62,7 @@ gulp.task('sass', function () {
 		}),
 		willChange,
 		short,
-		focus,
+		// focus,
 		autoprefixer(['last 2 version'], {
 			cascade: true
 		}),

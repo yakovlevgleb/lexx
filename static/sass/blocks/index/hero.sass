@@ -1,6 +1,5 @@
 .hero
 	margin-top: -126px
-	background-color: $main-blue
 	position: relative
 
 	.wrapper
@@ -63,28 +62,40 @@
 
 	&__catalog-items
 		display: flex
-		justify-content: flex-end
 		z-index: 100
-	
-	&__catalog-item
 		margin-top: -165px
+		max-width: 1012px
+		margin-left: auto
+
+	&__catalog-item
 		width: 506px
 		height: 165px
 		background-color: $main-blue
 		z-index: 100
 		padding: 40px 50px
+		box-sizing: border-box
 
-		&:nth-child(2)
+		&:nth-child(2n+2):not(&--empty)
 			background-color: $darker-blue
+		
+		&--empty
+			background-color: $t
 
 		&:hover
-			span
+			.hero__catalog-name
 				border-color: $t
 
-		span
-			font-size: 22px
-			line-height: 26px
-			color: $white
-			font-weight: 500
-			border-bottom: 1px solid rgba(255,255,255,.25)
-			transition: .5s border-color
+	&__catalog-name
+		font-size: 22px
+		line-height: 26px
+		color: $white
+		font-weight: 500
+		border-bottom: 1px solid rgba(255,255,255,.25)
+		transition: .5s border-color
+
+	&__catalog-link
+		position: absolute
+		left: 0
+		top: 0
+		right: 0
+		bottom: 0

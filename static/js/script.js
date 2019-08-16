@@ -151,7 +151,8 @@
 		init: function () {
 			var heroSlider = document.querySelector('.js-hero-slider'),
 				icatalogSlider = document.querySelector('.js-icatalog-slider'),
-				icatalogImgs = document.querySelector('.js-icatalog-imgs');
+				icatalogImgs = document.querySelector('.js-icatalog-imgs'),
+				heroCatalogSlider = document.querySelector('.js-heroCatalog-slider');
 
 			if (heroSlider) {
 				new Swiper(heroSlider, {
@@ -173,7 +174,7 @@
 			if (icatalogSlider) {
 				var icatalog = new Swiper(icatalogSlider, {
 					slidesPerView: 2,
-					loop: true,
+					loop: 0,
 					speed: 1200,
 					coverflowEffect: {
 						rotate: 70,
@@ -183,7 +184,30 @@
 						nextEl: '.icatalog__slider .swiper-button-next',
 						prevEl: '.icatalog__slider .swiper-button-prev',
 					},
-					loopAdditionalSlides: 1
+				});
+
+				icatalog.on('slideChangeTransitionStart', function () {
+					icatalogIMGs.slideToLoop(this.realIndex, 1200)
+
+					heroCatalog.slideToLoop(this.realIndex, 1200)
+				})
+			}
+
+			if (heroCatalogSlider) {
+				var heroCatalog = new Swiper(heroCatalogSlider, {
+					slidesPerView: 2,
+					loop: 0,
+					speed: 1200,
+					coverflowEffect: {
+						rotate: 70,
+						depth: 1000
+					},
+					navigation: {
+						nextEl: '.icatalog__slider .swiper-button-next',
+						prevEl: '.icatalog__slider .swiper-button-prev',
+					},
+					simulateTouch: false,
+					touchRatio: 0
 				});
 
 				icatalog.on('slideChangeTransitionStart', function () {
@@ -194,7 +218,7 @@
 			if (icatalogImgs) {
 				var icatalogIMGs = new Swiper(icatalogImgs, {
 					speed: 1200,
-					loop: true,
+					loop: 0,
 					slidesPerView: 1,
 					effect: 'coverflow',
 					coverflowEffect: {
@@ -202,8 +226,7 @@
 						depth: 1000
 					},
 					simulateTouch: false,
-					touchRatio: 0,
-					loopAdditionalSlides: 1
+					touchRatio: 0
 				});
 			}
 
@@ -224,6 +247,48 @@
 					})
 				});
 			}
+		}
+	}).init();
+
+	window.lexx.indexAnimation = ({
+		init: function () {
+			var firstScreen = document.querySelector('.first-screen'),
+				iCatalog = document.querySelector('.icatalog');
+
+			var lastScrollTop = 0;
+			window.addEventListener("scroll", function () {
+				var st = window.pageYOffset || document.documentElement.scrollTop;
+
+				console.log(firstScreen.offsetHeight - this.window.scrollY)
+				console.log(document.querySelector('.first-screen').offsetHeight)
+
+				if (st > lastScrollTop) {
+
+					if (firstScreen.offsetHeight - this.window.scrollY < document.querySelector('.first-screen').offsetHeight && !firstScreen.classList.contains('hide')) {
+						console.log('ОН СКРЫТ');
+
+						firstScreen.classList.add('hide');
+						firstScreen.classList.remove('show');
+
+						iCatalog.classList.add('show');
+
+						console.log(firstScreen.offsetHeight - this.window.scrollY);
+						console.log('--------------------------------------------');
+						console.log(document.querySelector('.first-screen').offsetHeight);
+					}
+
+				} else {
+					if (firstScreen.offsetHeight - this.window.scrollY === document.querySelector('.first-screen').offsetHeight && !firstScreen.classList.contains('show')) {
+						console.log('ПОКАЗАТЬ');
+
+						firstScreen.classList.add('show');
+						firstScreen.classList.remove('hide');
+
+						iCatalog.classList.remove('show');
+					}
+				}
+				lastScrollTop = st <= 0 ? 0 : st;
+			}, false);
 		}
 	}).init();
 

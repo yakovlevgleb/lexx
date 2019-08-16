@@ -35,10 +35,10 @@
 		position: absolute
 		left: 0
 		top: 0
+		width: 934px
 
 		img
 			height: 640px
-			width: 1012px
 			object-fit: cover
 			font-family: 'object-fit: cover;'
 	
@@ -99,8 +99,11 @@
 		position: relative
 		box-sizing: border-box
 
-		&:nth-child(2n+2)
+		&:nth-child(2n+2):not(&--empty)
 			background-color: $darker-blue
+		
+		&--empty
+			background-color: $t
 		
 		&:hover
 			.icatalog
@@ -123,6 +126,3 @@
 			color: $white
 			border-bottom: 1px solid rgba(255,255,255,.25)
 			transition: .5s border-color
-
-	&__imgs
-		width: 934px

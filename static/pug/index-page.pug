@@ -3,13 +3,14 @@ include blocks/blocks
 doctype html
 html(lang="ru")
 	+head('Главная')
-	body
-		+header
-		main
+	body.index
+		.first-screen
+			.first-screen__inner
+			+header
 			+hero
-			.blue
-				+icatalog
-				+iabout
+		main
+			+icatalog
+			+iabout
 			+inews
 		+footer
 	+scripts

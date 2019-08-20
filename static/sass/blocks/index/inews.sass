@@ -1,19 +1,33 @@
 .inews
-	padding-top: 92px
-	padding-bottom: 95px
+	padding-top: 93px
 	background-color: $white
+	overflow: hidden
 
 	&__header
 		display: flex
 		justify-content: space-between
 		align-items: flex-end
-		margin-bottom: 42px
+		margin-bottom: 46px
+
+		@include desktop
+			margin-bottom: 41px
+		
+		@media only screen and (max-width: 520px)
+			flex-direction: column
+			align-items: flex-start
 	
 	&__title
-		font-size: 58px
+		font-size: 46px
 		line-height: 1
 		font-weight: bold
 		color: $black
+
+		@include desktop
+			font-size: 42px
+			line-height: 46px
+		
+		@media only screen and (max-width: 520px)
+			margin-bottom: 10px
 
 	&__over-pic
 		object-fit: cover
@@ -26,6 +40,10 @@
 		font-weight: 500
 		border-bottom: 1px solid $border-bottom
 		transition: .5s border-color
+
+		@include desktop
+			font-size: 17px
+			line-height: 24px
 
 		&:hover
 			border-color: transparent

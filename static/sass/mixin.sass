@@ -1,2 +1,11 @@
 @mixin desktop
-	@media only screen and (max-width: 1400px) { @content; }
+	@media only screen and (max-width: 1500px) { @content; }
+
+@mixin sdesktop
+	@media only screen and (max-width: 1170px) { @content; }
+
+@mixin pad
+	@media only screen and (max-width: 1023px) { @content; }
+
+@mixin mob
+	@media only screen and (max-width: 767px) { @content; }

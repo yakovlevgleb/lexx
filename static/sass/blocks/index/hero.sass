@@ -1,18 +1,28 @@
 .hero
-	margin-top: -126px
+	margin-top: -125px
 	position: relative
+
+	@include pad
+		margin-top: -87px
 
 	.wrapper
 		width: 100%
 
 	&__slide
 		height: calc(100vh - 50px)
-		min-height: 700px
 		display: flex
 		flex-direction: column
 		justify-content: center
 		background-size: cover
 		background-repeat: no-repeat
+
+		@include desktop
+			.wrapper
+				max-width: 1170px
+				box-sizing: border-box
+
+		@include pad
+			height: 100vh
 
 	&__title
 		font-size: 72px
@@ -20,18 +30,34 @@
 		max-width: 750px
 		font-weight: bold
 		color: $white
-	
+
+		@include desktop
+			font-size: 56px
+			line-height: 60px
+		
+		@include mob
+			font-size: 29px
+			line-height: 35px
+
 	.swiper-buttons
 		display: flex
 		justify-content: flex-end
 		position: absolute
 		right: 50%
-		top: 50%
+		top: 49%
 		max-width: 1440px
 		width: 100%
 		margin: 0 auto
 		transform: translateX(50%)
 		z-index: 1
+
+		@include desktop
+			max-width: 980px
+		
+		@include sdesktop
+			top: auto
+			bottom: 60px
+			padding: 0 33px
 
 	.swiper-button-prev
 		position: static
@@ -44,6 +70,11 @@
 		margin-top: 0
 		transition: .5s transform
 		will-change: transform
+
+		@include desktop
+			background-size: 39px 26px
+			width: 39px
+			height: 26px
 
 		&:hover
 			transform: rotate(180deg) translateX(15px)
@@ -59,45 +90,10 @@
 		transition: .5s transform
 		will-change: transform
 
+		@include desktop
+			background-size: 39px 26px
+			width: 39px
+			height: 26px
+
 		&:hover
 			transform: translateX(15px)
-
-	&__catalog-items
-		display: flex
-		z-index: 100
-		margin-top: -165px
-		max-width: 1012px
-		margin-left: auto
-
-	&__catalog-item
-		width: 506px
-		height: 165px
-		background-color: $main-blue
-		z-index: 100
-		padding: 40px 50px
-		box-sizing: border-box
-
-		&:nth-child(2n+2):not(&--empty)
-			background-color: $darker-blue
-		
-		&--empty
-			background-color: $t
-
-		&:hover
-			.hero__catalog-name
-				border-color: $t
-
-	&__catalog-name
-		font-size: 22px
-		line-height: 26px
-		color: $white
-		font-weight: 500
-		border-bottom: 1px solid rgba(255,255,255,.25)
-		transition: .5s border-color
-
-	&__catalog-link
-		position: absolute
-		left: 0
-		top: 0
-		right: 0
-		bottom: 0

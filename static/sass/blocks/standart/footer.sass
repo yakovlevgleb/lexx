@@ -6,11 +6,18 @@
 	.wrapper
 		display: flex
 
+		@include pad
+			flex-direction: column-reverse
+
 	&__left
 		display: flex
 		flex-direction: column
 		width: calc(100% / 4 - 36px)
-		margin-right: 36px
+		margin-right: 43px
+
+		@include pad
+			width: 100%
+			margin-right: 0
 
 	&__copyrights
 		font-size: 15px
@@ -18,17 +25,29 @@
 		color: $black
 		margin-bottom: 22px
 
+		@include desktop
+			font-size: 14px
+			line-height: 20px
+
 	&__adress
 		font-size: 15px
 		line-height: 21px
 		color: $black
 		margin-bottom: 20px
+
+		@include desktop
+			font-size: 14px
+			line-height: 20px
 	
 	&__phones
 		display: flex
 		flex-direction: column
 		margin-bottom: 13px
-	
+
+		@include pad
+			flex-direction: row
+			flex-wrap: wrap
+
 	&__phones-link
 		font-size: 16px
 		line-height: 20px
@@ -37,6 +56,13 @@
 		display: inline-block
 		margin-bottom: 2px
 
+		@include desktop
+			font-size: 14px
+			line-height: 20px
+
+		@include pad
+			margin-right: 15px
+
 	&__emails-link
 		color: $main-blue
 		font-size: 15px
@@ -44,19 +70,36 @@
 		border-bottom: 1px solid $border-bottom
 		transition: .5s border-color
 
+		@include desktop
+			font-size: 14px
+			line-height: 20px
+
 		&:hover
 			border-color: $t
 		
 	&__nav
 		width: calc((100% / 4) * 3)
 
+		@include pad
+			width: 100%
+			margin-bottom: 40px
+
 	&__nav-list
 		columns: 3
+
+		@include mob
+			columns: 2
+		
+		@media (max-width: 395px)
+			columns: 1
 
 	&__nav-item
 		margin-right: 36px
 		margin-bottom: 31px
 		break-inside: avoid-column
+
+		@include pad
+			margin-right: 10px
 
 	&__nav-link
 		font-size: 16px
@@ -66,11 +109,18 @@
 		display: inline-block
 		transition: .5s color
 
+		@include desktop
+			font-size: 15px
+			line-height: 20px
+
 		&:hover
 			color: $main-blue
 	
 	&__nav-sublist
 		margin-top: 15px
+
+		@media (max-width: 395px)
+			display: none
 	
 	&__nav-subitem
 		margin-bottom: 14px
@@ -81,6 +131,10 @@
 		color: $gray-text
 		display: inline-block
 		transition: .5s color
+
+		@include desktop
+			font-size: 14px
+			line-height: 20px
 
 		&:hover
 			color: $main-blue

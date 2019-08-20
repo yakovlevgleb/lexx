@@ -1,6 +1,16 @@
 mixin header
 	header.header
 		.header__top
+			.header__language.header__language--mobile
+				span Язык/Language:
+				select.header__language-select.js-single-choice
+					option Русский
+					option Английский
+					option Испанский
+					option Португальский
+					option Арабский
+					option Немецкий
+					option Индийский
 			nav.nav
 				ul.nav__list
 					li.nav__item
@@ -79,8 +89,9 @@ mixin header
 					li.nav__item
 						a(href="#").nav__link Контакты
 			.header__btns
-				button(type="button").header__btn.header__btn--search
-				button(type="button").header__btn.header__btn--message
+				button(type="button").header__btn.header__btn--search Поиск
+				button(type="button").header__btn.header__btn--message Связаться с нами
+
 		.header__bottom
 			.logo
 				a(href="#").logo__link
@@ -97,3 +108,5 @@ mixin header
 						option Немецкий
 						option Индийский
 				a(href="tel:83432270205").header__tel +7 (343) 227-02-05
+			button(type="button").header__burger.js-burger
+				span

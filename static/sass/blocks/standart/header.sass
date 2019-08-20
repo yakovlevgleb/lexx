@@ -9,15 +9,37 @@
 		align-items: center
 		justify-content: space-between
 		background-color: $main-blue
+		z-index: 1
 
 		@include desktop
 			height: 48px
-			padding: 0 32px
+			padding-right: 32px
+			padding-left: 29px
+		
+		@include pad
+			display: none
+			position: absolute
+			left: 0
+			top: 0
+			right: 0
+			bottom: 0
+			padding: 0 20px
+			width: 100vw
+			height: 100vh
+			align-items: center
+			justify-content: center
+			flex-direction: column
+			overflow-y: auto
+			overflow-x: hidden
 
 	&__btns
 		display: inline-block
 		font-size: 0
 		line-height: 0
+
+		@include pad
+			display: flex
+			flex-direction: column
 
 	&__btn
 		height: 50px
@@ -30,6 +52,18 @@
 		@include desktop
 			width: 48px
 			height: 48px
+		
+		@include pad
+			width: auto
+			height: auto
+			background-color: $t
+			font-size: 22px
+			line-height: 1
+			color: $white
+			font-weight: 400
+			
+			&:before
+				content: none
 
 		&:hover
 			&:before
@@ -42,6 +76,9 @@
 
 		&--search
 			background-color: $dark-blue
+
+			@include mob
+				margin-bottom: 18px
 
 			&:before
 				content: ''
@@ -88,18 +125,46 @@
 		padding: 0 33px
 		padding-top: 30px
 
+		@include desktop
+			padding: 0 30px
+			padding-top: 30px
+		
+		@include pad
+			justify-content: flex-end
+
 	&__info
 		display: flex
 		align-items: flex-start
-	
+
+		@include pad
+			margin-right: 25px
+
 	&__tel
 		font-size: 16px
 		line-height: 1
 		font-weight: 500
 		color: $white
+
+		@include desktop
+			font-size: 15px
+		
+		@media only screen and (max-width: 420px)
+			display: none
 	
 	&__language
 		display: flex
+
+		@include mob
+			display: none
+
+		&--mobile
+			display: none
+
+			@include mob
+				display: flex
+				flex-direction: column
+				margin-bottom: 30px
+
 		span
 			font-size: 16px
 			line-height: 1
@@ -107,16 +172,38 @@
 			color: $white
 			display: inline-block
 			margin-right: 8px
-		
+
+			@include desktop
+				font-size: 15px
+			
+			@include mob
+				font-size: 22px
+				font-weight: 400
+				margin-right: 0
+				margin-bottom: 5px
+
 		.choices
 			margin-right: 23px
 			padding-right: 10px
+
+			@include mob
+				text-align: center
+				padding-right: 0
+				margin-right: 0
 		
 		.choices__inner
 			border: none
 			padding: 0
 			height: auto
 			line-height: 1
+
+			@include mob
+				text-align: center
+				width: auto
+		
+		.choices__list
+			@include mob
+				width: auto
 
 		.choices__item
 			white-space: nowrap
@@ -126,6 +213,14 @@
 			color: $white
 			border-bottom: 1px dotted rgba(255,255,255,.25)
 
+			@include desktop
+				font-size: 15px
+			
+			@include mob
+				font-size: 22px
+				font-weight: 400
+				text-align: center
+
 		.choices[data-type*="select-one"]:after
 			background-image: inline('header-choises-arrow.svg')
 			width: 6px
@@ -134,6 +229,9 @@
 			margin: 0
 			right: 0
 			transform: translateY(-50%)
+
+			@include mob
+				display: none
 		
 		.choices__list--dropdown
 			top: calc(100% + 15px)
@@ -141,6 +239,9 @@
 			border: none
 			background-color: $dark-blue
 			margin-left: -20px
+
+			@include mob
+				margin-left: -10px
 
 			.choices__list
 				padding: 30px 20px
@@ -159,3 +260,99 @@
 			transition: .5s opacity
 			opacity: 1
 			will-change: opacity
+
+	&__burger
+		position: relative
+		z-index: 101
+
+		display: none
+
+		width: 30px
+		height: 24px
+		padding: 0
+
+		cursor: pointer
+		-webkit-user-select: none
+		-moz-user-select: none
+		-ms-user-select: none
+		user-select: none
+
+		border: none
+		outline: none
+		background: none
+
+		@include pad
+			display: block
+
+		span
+			position: absolute
+			top: auto
+			bottom: 0
+
+			display: block
+
+			width: 30px
+			height: 2px
+			margin-top: 0px
+
+			transition-delay: 0.13s
+			transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19)
+			transition-duration: 0.13s
+
+			background-color: $white
+
+			&:before,
+			&:after
+				position: absolute
+
+				display: block
+
+				width: 30px
+				height: 2px
+
+				content: ""
+				transition-timing-function: ease
+				transition-duration: 0.15s
+				transition-property: transform
+
+				background-color: $white
+
+			&:before
+				top: -10px
+
+				transition: top 0.12s cubic-bezier(0.33333, 0.66667, 0.66667, 1) 0.2s, transform 0.13s cubic-bezier(0.55, 0.055, 0.675, 0.19)
+
+				background-color: $white
+
+			&:after
+				top: -20px
+				bottom: -10px
+
+				transition: top 0.2s cubic-bezier(0.33333, 0.66667, 0.66667, 1) 0.2s, opacity 0.1s linear
+
+				background-color: $white
+
+		&--active
+			span
+				transition-delay: 0.22s
+				transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1)
+				transform: translate3d(0, -10px, 0) rotate(-45deg)
+
+				background-color: $white
+
+				&:before,
+				&:after
+					background-color: $white
+
+				&:before
+					top: 0
+
+					transition: top 0.1s cubic-bezier(0.33333, 0, 0.66667, 0.33333) 0.16s, transform 0.13s cubic-bezier(0.215, 0.61, 0.355, 1) 0.25s
+					transform: rotate(-90deg)
+
+				&:after
+					top: 0
+
+					transition: top 0.2s cubic-bezier(0.33333, 0, 0.66667, 0.33333), opacity 0.1s linear 0.22s
+
+					opacity: 0

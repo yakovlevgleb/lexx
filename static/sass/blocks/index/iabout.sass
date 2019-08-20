@@ -1,9 +1,19 @@
 .iabout
 	padding-bottom: 97px
+
+	@include desktop
+		padding-bottom: 99px
+
 	&__video
 		width: 100%
 		position: relative
 		margin-bottom: 70px
+
+		@include desktop
+			margin-bottom: 63px
+		
+		@media only screen and (max-width: 520px)
+			display: none
 
 		video
 			width: 100%
@@ -35,19 +45,37 @@
 	&__left
 		max-width: 770px
 
+		@include desktop
+			max-width: 645px
+		
+		@include sdesktop
+			max-width: inherit
+
 	&__title
 		font-size: 40px
 		line-height: 44px
 		font-weight: 500
 		color: $white
 		margin-bottom: 36px
-	
+
+		@include desktop
+			font-size: 34px
+			line-height: 38px
+		
+		@include desktop
+			font-size: 22px
+			line-height: 24px
+
 	&__text
 		font-size: 18px
 		line-height: 24px
 		color: $white
 		font-weight: normal
 		margin-bottom: 39px
+
+		@include desktop
+			font-size: 17px
+			line-height: 23px
 
 	&__link
 		font-size: 18px
@@ -57,6 +85,10 @@
 		border-bottom: 1px solid rgba(255,255,255,.25)
 		transition: .5s border-color
 
+		@include desktop
+			font-size: 17px
+			line-height: 24px
+
 		&:hover
 			border-color: $t
 
@@ -65,3 +97,9 @@
 		margin-top: -90px
 		position: relative
 		z-index: 1
+
+		@include desktop
+			margin-top: -105px
+		
+		@include sdesktop
+			display: none

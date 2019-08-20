@@ -52,12 +52,16 @@ textarea
 
 .ovh
 	overflow: hidden
-	// position: fixed
-	padding-right: 17px
+	position: fixed
+	// padding-right: 17px
 
 .wrapper
 	max-width: 1440px
 	margin: 0 auto
+	@include desktop
+		padding: 0 33px
+	@include mob
+		padding: 0 15px
 
 .ff
 	.footer
@@ -65,6 +69,9 @@ textarea
 			break-inside: avoid
 
 .logo
+	@include pad
+		margin-right: auto
+
 	&__link
 		display: inline-block
 		font-size: 0
@@ -72,6 +79,7 @@ textarea
 
 	&__img
 		width: 175px
-		height: 92px
 		object-fit: cover
 		font-family: 'object-fit: cover;'
+		@include pad
+			width: 100px

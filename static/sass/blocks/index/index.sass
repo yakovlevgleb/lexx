@@ -1,31 +1,51 @@
 .index
 	.icatalog
-		padding-top: 553px
-		transition: 3s padding
+		padding-top: calc(100vh - 427px)
+		transition: .5s padding
 		user-select: none
 
-		.icatalog__imgs
+		@include desktop
+			padding-top: calc(100vh - 441px)
+		
+		@include sdesktop
+			padding-top: 100px
+
+		.icatalog__footer
 			opacity: 0
-			transition: .8s
+			transition: all .5s
+
+			@include sdesktop
+				opacity: 1
 
 		.icatalog__slider
 			.swiper-buttons
 				opacity: 0
-				transition: .8s
-	
+				transition: all .5s
+
+				@include sdesktop
+					opacity: 1
+
 		&.show
 			padding-top: 200px
 			user-select: none
 
-			.icatalog__imgs
+			@include sdesktop
+				padding-top: 100px
+
+			.icatalog__footer
 				opacity: 1
-				transition-delay: 1.5s
-			
+				transition-delay: .2s
+
 			.icatalog__slider
 				.swiper-buttons
 					opacity: 1
-					transition-delay: 1.5s
- 
+					transition-delay: .2s
+
+			.icatalog__imgs-item
+				&:before
+					width: 0
+					transition-delay: .2s
+
 .first-screen
 	position: fixed
 	width: 0
@@ -33,12 +53,17 @@
 	top: 0
 	width: 100%
 	height: 100vh
-	transition: 3s transform
+	transition: .5s transform
 	transform: translateY(0)
 	z-index: 10
 
+	@include sdesktop
+		position: static
+
 	&.hide
 		transform: translateY(-100%)
+		@include sdesktop
+			transform: translateY(0)
 
 		.hero__catalog-items
 			opacity: 0

@@ -126,6 +126,27 @@
 
 	window.lexx.obj = ({
 		init: function () {
+			var burger = document.querySelector('.js-burger');
+
+			if (burger) {
+				burger.addEventListener('click', function () {
+					var _t = this,
+						nav = document.querySelector('.header__top'),
+						body = document.querySelector('body');
+					if (!_t.classList.contains('header__burger--active')) {
+						_t.classList.add('header__burger--active');
+						body.classList.add('ovh');
+
+						fadeIn(nav, '350', 0, 'flex');
+					} else {
+						_t.classList.remove('header__burger--active');
+						body.classList.remove('ovh');
+						fadeOut(nav, '350');
+					}
+					return false;
+				});
+			}
+
 			if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
 				document.body.classList.add('ff')
 			}
@@ -135,7 +156,6 @@
 	window.lexx.choises = ({
 		init: function () {
 			var select = document.querySelectorAll('.js-single-choice');
-
 			select.forEach(function (el) {
 				var choice = new Choices(el, {
 					searchEnabled: false,
@@ -184,6 +204,13 @@
 						nextEl: '.icatalog__slider .swiper-button-next',
 						prevEl: '.icatalog__slider .swiper-button-prev',
 					},
+					breakpoints: {
+						1170: {
+							simulateTouch: false,
+							touchRatio: 0,
+							loop: false
+						}
+					}
 				});
 
 				icatalog.on('slideChangeTransitionStart', function () {
@@ -256,25 +283,16 @@
 				iCatalog = document.querySelector('.icatalog');
 
 			var lastScrollTop = 0;
-			window.addEventListener("scroll", function () {
+			window.addEventListener("scroll", function (e) {
 				var st = window.pageYOffset || document.documentElement.scrollTop;
-
-				console.log(firstScreen.offsetHeight - this.window.scrollY)
-				console.log(document.querySelector('.first-screen').offsetHeight)
 
 				if (st > lastScrollTop) {
 
 					if (firstScreen.offsetHeight - this.window.scrollY < document.querySelector('.first-screen').offsetHeight && !firstScreen.classList.contains('hide')) {
-						console.log('ОН СКРЫТ');
-
 						firstScreen.classList.add('hide');
 						firstScreen.classList.remove('show');
 
 						iCatalog.classList.add('show');
-
-						console.log(firstScreen.offsetHeight - this.window.scrollY);
-						console.log('--------------------------------------------');
-						console.log(document.querySelector('.first-screen').offsetHeight);
 					}
 
 				} else {

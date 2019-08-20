@@ -1,15 +1,28 @@
 .nav
+	@include pad
+		width: 100%
+
 	&__list
 		display: flex
 		font-size: 0
 		line-height: 0
 
+		@include pad
+			flex-direction: column
+
 	&__item
 		margin-right: 23px
 		position: relative
 
-		@include desktop
-			margin-right: 21px
+		@include sdesktop
+			margin-right: 10px
+
+		@include pad
+			text-align: center
+			margin-right: 0
+		
+		@include mob
+			margin-bottom: 18px
 
 		&:last-child
 			margin-right: 0
@@ -44,6 +57,15 @@
 		@include desktop
 			font-size: 15px
 			line-height: 20px
+		
+		@include sdesktop
+			font-size: 14px
+			line-height: 19px
+		
+		@include pad
+			font-size: 22px
+			line-height: 1
+			font-weight: 400
 
 	&__sublist
 		position: absolute
@@ -60,6 +82,14 @@
 			visibility: visible
 			opacity: 1
 
+		@include mob
+			display: none
+			position: static
+			visibility: visible
+			opacity: 1
+			background-color: $t
+			padding: 0
+
 	&__subitem
 		margin-bottom: 14px
 		&.active
@@ -67,6 +97,9 @@
 				opacity: .5
 
 		&:last-child
+			margin-bottom: 0
+
+		@include mob
 			margin-bottom: 0
 
 	&__sublink
@@ -84,3 +117,6 @@
 		@include desktop
 			font-size: 14px
 			line-height: 20px
+
+		@include mob
+			white-space: normal

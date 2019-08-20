@@ -63,7 +63,7 @@ gulp.task('sass', function () {
 		}),
 		pxtoviewport({
 			unitToConvert: 'pxl',
-			viewportWidth: 1920,
+			viewportWidth: 1366,
 			selectorBlackList: [],
 			mediaQuery: true,
 		}),

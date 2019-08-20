@@ -33,22 +33,18 @@
 	top: 0
 	width: 100%
 	height: 100vh
-	transition: 2s transform
+	transition: 3s transform
 	transform: translateY(0)
-	// z-index: 10
+	z-index: 10
 
 	&.hide
 		transform: translateY(-100%)
 
 		.hero__catalog-items
-			display: none
 			opacity: 0
-			transition: .5s opacity
 
 	&.show
 		transform: translateY(0)
 
 		.hero__catalog-items
-			display: none
 			opacity: 1
-			transition: .5s opacity

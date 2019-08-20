@@ -10,6 +10,10 @@
 		justify-content: space-between
 		background-color: $main-blue
 
+		@include desktop
+			height: 48px
+			padding: 0 32px
+
 	&__btns
 		display: inline-block
 		font-size: 0
@@ -22,6 +26,10 @@
 		line-height: 0
 		position: relative
 		cursor: pointer
+
+		@include desktop
+			width: 48px
+			height: 48px
 
 		&:hover
 			&:before
@@ -47,7 +55,12 @@
 				background-repeat: no-repeat
 				background-position: center
 				background-image: inline('header-search.svg')
-		
+
+				@include desktop
+					width: 13px
+					height: 13px
+					background-size: 13px 13px
+	
 		&--message
 			background-color: $darker-blue
 
@@ -63,6 +76,12 @@
 				background-position: center
 				background-size: 14px 14px
 				background-image: inline('header-message.svg')
+
+				@include desktop
+					width: 14px
+					height: 14px
+					background-size: 14px 14px
+
 	&__bottom
 		display: flex
 		justify-content: space-between

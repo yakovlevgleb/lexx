@@ -3,10 +3,13 @@
 		display: flex
 		font-size: 0
 		line-height: 0
-	
+
 	&__item
 		margin-right: 23px
 		position: relative
+
+		@include desktop
+			margin-right: 21px
 
 		&:last-child
 			margin-right: 0
@@ -26,7 +29,7 @@
 			bottom: -20px
 			height: 20px
 			width: 100%
-	
+
 	&__link
 		font-size: 16px
 		line-height: 1
@@ -37,6 +40,10 @@
 
 		&:hover
 			opacity: .5
+		
+		@include desktop
+			font-size: 15px
+			line-height: 20px
 
 	&__sublist
 		position: absolute
@@ -73,3 +80,7 @@
 
 		&:hover
 			opacity: .5
+
+		@include desktop
+			font-size: 14px
+			line-height: 20px

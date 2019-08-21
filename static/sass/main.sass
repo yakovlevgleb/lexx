@@ -19,6 +19,25 @@ body
 	position: relative
 	background-color: $main-blue
 
+	&.white
+		background-color: $white
+
+		.header__tel
+			color: $black
+
+		.header__language
+			span
+				color: $black
+
+			.choices__list--single
+				.choices__item
+					color: $black
+			
+			.choices[data-type*="select-one"]:after
+				width: 6px
+				height: 4px
+				background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAQAAAAHDYbIAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAJcEhZcwAACxIAAAsSAdLdfvwAAAAHdElNRQfjCBQSDyOJUlImAAAAKElEQVQI1y3BMQEAIAgAsN1EMZRWoxRRuPFhI81OQhmjBBytHet68AGSVgv0AdCFUwAAAABJRU5ErkJggg==')
+
 h1,
 h2,
 h3,
@@ -83,3 +102,33 @@ textarea
 		font-family: 'object-fit: cover;'
 		@include pad
 			width: 100px
+
+.white
+	.header
+		&__burger
+			span
+				background-color: $main-blue
+
+				&:before
+					background-color: $main-blue
+				
+				&:after
+					background-color: $main-blue
+			
+			&--active
+				span
+					background-color: $white
+
+					&:before
+						background-color: $white
+					
+					&:after
+						background-color: $white
+	&.inner
+		.header
+			margin-bottom: 92px
+
+			@include pad
+				margin-bottom: 45px
+		.footer
+			margin-top: 94px

@@ -1,5 +1,5 @@
-mixin header
-	header.header
+mixin header(logo)
+	header.header&attributes(attributes)
 		.header__top
 			.header__language.header__language--mobile
 				span Язык/Language:
@@ -95,7 +95,7 @@ mixin header
 		.header__bottom
 			.logo
 				a(href="#").logo__link
-					img(src="./img/logo-white.png", alt="").logo__img
+					img(src=logo, alt="").logo__img
 			.header__info
 				.header__language
 					span Язык/Language:

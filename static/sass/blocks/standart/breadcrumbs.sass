@@ -1,0 +1,41 @@
+.breadcrumbs
+	display: flex
+	margin-bottom: 13px
+
+	@include desktop
+		margin-bottom: 15px
+	
+	@include pad
+		display: none
+
+	&__link
+		color: #b0b0b0
+		font-size: 15px
+		line-height: 21px
+		font-weight: normal
+		border-bottom: 1px solid #b0b0b0
+		transition: .5s border-color
+
+		@include desktop
+			font-size: 14px
+			line-height: 20px
+
+		&:hover
+			border-color: $t
+	
+	span
+		&.breadcrumbs__link
+			border: none
+			cursor: auto
+
+	&__line
+		color: #b0b0b0
+		font-size: 15px
+		line-height: 21px
+		font-weight: normal
+		display: inline-block
+		margin: 0 12px
+
+		@include desktop
+			font-size: 14px
+			line-height: 20px

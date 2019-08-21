@@ -1,0 +1,334 @@
+.wis-content
+	.wrapper
+		max-width: 1100px
+	a:not([class])
+		display: inline-block
+
+		transition: border-color 0.5s
+		text-decoration: none
+
+		color: $main-blue
+		border-bottom: 1px solid $border-bottom
+
+		font-size: 18px
+		font-weight: normal
+		line-height: 24px
+
+		&:hover
+			border-color: transparent
+
+		& + p
+			margin-top: 20px
+
+	p:not([class])
+		margin-bottom: 19px
+
+		color: $black
+
+		font-size: 18px
+		font-weight: normal
+		line-height: 24px
+
+		& + img,
+		& + figure
+			margin-top: 18px
+
+		&:last-child
+			margin-bottom: 0
+	
+	figure
+		margin: 0
+		margin-bottom: 18px
+		display: inline-block
+
+	h1
+		margin-bottom: 34px
+
+		text-transform: none
+
+		color: $black
+
+		font-size: 64px
+		font-weight: bold
+		line-height: 68px
+
+	h2
+		margin-top: 65px
+		margin-bottom: 34px
+
+		text-transform: none
+
+		color: $black
+
+		font-size: 48px
+		font-weight: bold
+		line-height: 52px
+
+		&:first-child
+			margin-top: 0
+
+	h3
+		margin-top: 65px
+		margin-bottom: 28px
+
+		text-transform: none
+
+		color: $black
+
+		font-size: 36px
+		font-weight: bold
+		line-height: 40px
+
+		&:first-child
+			margin-top: 0
+
+	h4
+		margin-top: 65px
+		margin-bottom: 28px
+ 
+		text-transform: none
+
+		color: $black
+
+		font-size: 36px
+		font-weight: bold
+		line-height: 40px
+
+		&:first-child
+			margin-top: 0
+
+	ol
+		margin-top: 0
+		margin-bottom: 21px
+		padding: 0
+
+		list-style: none
+
+		counter-reset: number
+
+		& + h1,
+		& + h2,
+		& + h3
+			margin-top: 47px
+
+		li
+			position: relative
+
+			padding-left: 35px
+
+			color: $black
+
+			font-size: 18px
+			font-weight: normal
+			line-height: 24px
+
+			&:last-child
+				margin-bottom: 0
+
+			&:before
+				position: absolute
+				left: 0
+
+				content: counters(number, ".") "."
+				counter-increment: number
+
+				color: $main-blue
+
+				font-size: 18px
+				font-weight: normal
+				line-height: 28px
+
+	ul:not([class])
+		margin-bottom: 21px
+		padding: 0
+
+		list-style: none
+
+		& + h1,
+		& + h2,
+		& + h3
+			margin-top: 47px
+
+		li:not([class])
+			position: relative
+
+			padding-left: 35px
+
+			color: $black
+
+			font-size: 18px
+			font-weight: normal
+			line-height: 24px
+
+			&:last-child
+				margin-bottom: 0
+
+			&:before
+				position: absolute
+				top: 13px
+				left: 0
+
+				width: 25px
+				height: 1px
+
+				background-color: $main-blue
+
+				content: ''
+
+	img:not([class])
+		width: auto
+		max-width: 100%
+		height: auto
+		max-height: 100%
+		margin-bottom: 32px
+
+		&:last-child
+			margin-bottom: 0
+
+	figcaption
+		margin-top: -20px
+
+		text-align: center
+
+		color: rgba(0,0,0,0.6)
+
+		font-size: 16px
+		font-weight: normal
+		line-height: 26px
+
+	.table-responsive
+		overflow-x: auto
+
+	table
+		box-sizing: content-box
+		width: 99%
+		margin-bottom: 35px
+		margin-top: 35px
+
+		border-spacing: 0
+
+		border-collapse: collapse
+
+		caption
+			text-align: left
+
+			color: $black
+
+			font-size: 14px
+			font-weight: bold
+			line-height: 20px
+
+		tr
+			&:first-child
+				background-color: #f1f1f1
+				border: none
+
+			th
+				padding: 15px 26px
+
+				text-align: left
+
+				color: $black
+
+				font-size: 14px
+				font-weight: normal
+				line-height: 20px
+
+			td
+				padding: 15px 26px
+
+				border: 1px solid #f1f1f1
+
+				color: $black
+
+				font-size: 14px
+				font-weight: normal
+				line-height: 20px
+
+@include desktop
+	.wis-content
+		.wrapper
+			max-width: 1026px
+		h1
+			font-size: 56px
+			line-height: 60px
+
+		h2
+			font-size: 42px
+			line-height: 46px
+			margin-bottom: 38px
+
+		h3
+			font-size: 30px
+			line-height: 34px
+			margin-bottom: 30px
+
+		h4
+			font-size: 30px
+			line-height: 34px
+			margin-bottom: 30px
+
+		p
+			font-size: 17px
+			line-height: 23px
+
+			a
+				font-size: 17px
+				line-height: 23px
+		
+		figcaption
+			margin-bottom: 22px
+
+			font-size: 17px
+			line-height: 23px
+
+		figure
+			& + p
+				margin-top: 20px 
+		
+		ol:not([class])
+			margin-bottom: 17px
+			li:not([class])
+				font-size: 17px
+				line-height: 23px
+
+				&:before
+					font-size: 17px
+					line-height: 23px
+		
+		ul:not([class])
+			margin-bottom: 17px
+			li:not([class])
+				font-size: 17px
+				line-height: 23px
+
+				&:before
+					top: 11px
+
+		table
+			margin-bottom: 33px
+			tr
+				th
+					font-size: 14px
+					line-height: 20px
+				td
+					font-size: 14px
+					line-height: 20px
+
+@media only screen and (max-width:500px)
+	.wis-content
+		h1
+			font-size: 26px
+			line-height: 28px
+
+		h2
+			font-size: 24px
+			line-height: 26px
+
+		h3
+			font-size: 22px
+			line-height: 24px
+
+		h4
+			font-size: 20px
+			line-height: 22px

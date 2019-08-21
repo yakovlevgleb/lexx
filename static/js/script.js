@@ -122,7 +122,25 @@
 				}
 			});
 		});
+	};
+
+	function wrap(el, wrapper) {
+		el.parentNode.insertBefore(wrapper, el);
+		wrapper.appendChild(el);
 	}
+
+	if (/Mobi/.test(navigator.userAgent)) {
+		var tableOver = document.createElement("div");
+		tableOver.className = 'table-responsive';
+		document.querySelectorAll('table:not([class])').forEach(function(item) {
+			wrap(item, tableOver)
+		})
+	}
+
+	document.querySelectorAll('body *:not([class]):not([id])').forEach((item) => {
+		item.innerHTML = item.innerHTML.replace(/( |&nbsp;|\(){1}([№а-яА-Я]){1}(\.){0,1} /g, '$1$2$3&nbsp;');
+		item.innerHTML = item.innerHTML.replace(/( |&nbsp;|\(){1}([№а-яА-Я]){1}(\.){0,1} /g, '$1$2$3&nbsp;');
+	});
 
 	window.lexx.obj = ({
 		init: function () {
@@ -171,8 +189,7 @@
 		init: function () {
 			var heroSlider = document.querySelector('.js-hero-slider'),
 				icatalogSlider = document.querySelector('.js-icatalog-slider'),
-				icatalogImgs = document.querySelector('.js-icatalog-imgs'),
-				heroCatalogSlider = document.querySelector('.js-heroCatalog-slider');
+				icatalogImgs = document.querySelector('.js-icatalog-imgs');
 
 			if (heroSlider) {
 				new Swiper(heroSlider, {
@@ -211,30 +228,6 @@
 							loop: false
 						}
 					}
-				});
-
-				icatalog.on('slideChangeTransitionStart', function () {
-					icatalogIMGs.slideToLoop(this.realIndex, 1200)
-
-					heroCatalog.slideToLoop(this.realIndex, 1200)
-				})
-			}
-
-			if (heroCatalogSlider) {
-				var heroCatalog = new Swiper(heroCatalogSlider, {
-					slidesPerView: 2,
-					loop: 0,
-					speed: 1200,
-					coverflowEffect: {
-						rotate: 70,
-						depth: 1000
-					},
-					navigation: {
-						nextEl: '.icatalog__slider .swiper-button-next',
-						prevEl: '.icatalog__slider .swiper-button-prev',
-					},
-					simulateTouch: false,
-					touchRatio: 0
 				});
 
 				icatalog.on('slideChangeTransitionStart', function () {
@@ -280,33 +273,33 @@
 	window.lexx.indexAnimation = ({
 		init: function () {
 			var firstScreen = document.querySelector('.first-screen'),
-				iCatalog = document.querySelector('.icatalog');
-
-			var lastScrollTop = 0;
-			window.addEventListener("scroll", function (e) {
-				var st = window.pageYOffset || document.documentElement.scrollTop;
-
-				if (st > lastScrollTop) {
-
-					if (firstScreen.offsetHeight - this.window.scrollY < document.querySelector('.first-screen').offsetHeight && !firstScreen.classList.contains('hide')) {
-						firstScreen.classList.add('hide');
-						firstScreen.classList.remove('show');
-
-						iCatalog.classList.add('show');
+				iCatalog = document.querySelector('.icatalog'),
+				lastScrollTop = 0;
+			if (document.body.classList.contains('index')) {
+				window.addEventListener("scroll", function (e) {
+					var st = window.pageYOffset || document.documentElement.scrollTop;
+	
+					if (st > lastScrollTop) {
+	
+						if (firstScreen.offsetHeight - this.window.scrollY < document.querySelector('.first-screen').offsetHeight && !firstScreen.classList.contains('hide')) {
+							firstScreen.classList.add('hide');
+							firstScreen.classList.remove('show');
+	
+							iCatalog.classList.add('show');
+						}
+	
+					} else {
+						if (firstScreen.offsetHeight - this.window.scrollY === document.querySelector('.first-screen').offsetHeight && !firstScreen.classList.contains('show')) {
+	
+							firstScreen.classList.add('show');
+							firstScreen.classList.remove('hide');
+	
+							iCatalog.classList.remove('show');
+						}
 					}
-
-				} else {
-					if (firstScreen.offsetHeight - this.window.scrollY === document.querySelector('.first-screen').offsetHeight && !firstScreen.classList.contains('show')) {
-						console.log('ПОКАЗАТЬ');
-
-						firstScreen.classList.add('show');
-						firstScreen.classList.remove('hide');
-
-						iCatalog.classList.remove('show');
-					}
-				}
-				lastScrollTop = st <= 0 ? 0 : st;
-			}, false);
+					lastScrollTop = st <= 0 ? 0 : st;
+				}, false);
+			}
 		}
 	}).init();
 

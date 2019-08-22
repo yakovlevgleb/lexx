@@ -8,6 +8,7 @@
 		width: 100%
 		position: relative
 		margin-bottom: 70px
+		overflow: hidden
 
 		@include desktop
 			margin-bottom: 63px
@@ -31,13 +32,18 @@
 		z-index: 1
 		transform: translate(-50%, -50%)
 		background-image: inline('play.svg')
-		background-position: center
+		background-position: left 27px top 22px
 		background-repeat: no-repeat
 		transition: .5s background-color
 		cursor: pointer
 
 		&:hover
 			background-color: $main-blue
+		
+	&__video-poster
+		position: absolute
+		left: 0
+		top: 0
 
 	&__content
 		display: flex
@@ -62,7 +68,7 @@
 			font-size: 34px
 			line-height: 38px
 		
-		@include desktop
+		@include sdesktop
 			font-size: 22px
 			line-height: 24px
 

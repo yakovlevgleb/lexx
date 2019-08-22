@@ -1,0 +1,94 @@
+.prod-category
+	&__list
+		display: flex
+		flex-wrap: wrap
+		margin-bottom: -36px
+
+	&__item
+		width: calc(100% / 3 - 24px)
+		margin-right: 36px
+		margin-bottom: 36px
+		padding: 50px 48px
+		padding-top: 0
+		position: relative
+
+		@include desktop
+			margin-right: 32px
+			margin-bottom: 32px
+			width: calc(100% / 3 - 21.3333px)
+		
+		@include sdesktop
+			width: calc(100% / 2 - 16px)
+			margin-right: 32px
+
+			&:nth-child(3n+3)
+				margin-right: 32px
+
+			&:nth-child(2n+2)
+				margin-right: 0
+
+		@include mob
+			width: 100%
+			margin-right: 0!important
+			padding: 35px 29px
+
+		&:nth-child(3n+3)
+			margin-right: 0
+
+		&:before
+			content: ''
+			position: absolute
+			left: 0
+			bottom: 0
+			height: 100%
+			width: 100%
+			background-color: #fcfcfc
+			transition: .4s height
+
+		&:hover
+			&:before
+				height: 0
+			.prod-category__name
+				transform: translateY(26px)
+				span
+					color: $main-blue
+					border-color: $t
+
+	&__over-img
+		position: relative
+		height: 494px
+
+		@include desktop
+			height: 451px
+
+	&__img
+		max-width: 100%
+		object-fit: cover
+		font-family: 'object-fit: cover;'
+		position: absolute
+		left: 50%
+		top: 50%
+		transform: translate(-50%, -50%)
+
+	&__link
+		position: absolute
+		left: 0
+		top: 0 
+		right: 0
+		bottom: 0
+		z-index: 1
+
+	&__name
+		transform: translateY(0)
+		will-change: transform
+		transition: .5s transform
+		span
+			font-size: 22px
+			line-height: 26px
+			color: $black
+			border-bottom: 1px solid rgba(0,0,0,.25)
+			transition: .5s color, .5s border-color
+
+			@include desktop
+				font-size: 18px
+				line-height: 22px

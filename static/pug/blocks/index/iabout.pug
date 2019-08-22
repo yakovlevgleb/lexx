@@ -2,8 +2,10 @@ mixin iabout
 	section.iabout
 		.wrapper
 			.iabout__video
+				video(autoplay="true", muted, loop="true").iabout__video-poster.js-video-poster
+					source(src="https://www.w3schools.com/tags/movie.mp4" type="video/mp4")
 				button(type="button").iabout__video-btn.js-play-video
-				video(poster="./img/video-poster.jpg").js-video
+				video.js-video
 					source(src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4")
 
 			.iabout__content

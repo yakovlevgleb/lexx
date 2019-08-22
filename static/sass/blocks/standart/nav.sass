@@ -20,8 +20,6 @@
 		@include pad
 			text-align: center
 			margin-right: 0
-		
-		@include mob
 			margin-bottom: 18px
 
 		&:last-child
@@ -70,7 +68,7 @@
 	&__sublist
 		position: absolute
 		left: -20px
-		top: calc(100% + 16px)
+		top: calc(100% + 14px)
 		background-color: $dark-blue
 		padding: 25px 20px
 		z-index: 1
@@ -82,7 +80,7 @@
 			visibility: visible
 			opacity: 1
 
-		@include mob
+		@include pad
 			display: none
 			position: static
 			visibility: visible
@@ -99,7 +97,7 @@
 		&:last-child
 			margin-bottom: 0
 
-		@include mob
+		@include pad
 			margin-bottom: 0
 
 	&__sublink
@@ -118,5 +116,5 @@
 			font-size: 14px
 			line-height: 20px
 
-		@include mob
+		@include pad
 			white-space: normal

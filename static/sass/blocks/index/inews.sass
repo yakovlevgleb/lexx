@@ -47,3 +47,13 @@
 
 		&:hover
 			border-color: transparent
+
+	@include pad
+		.cards__item
+			&:nth-child(3)
+				display: none
+
+	@include mob
+		.cards__item
+				&:nth-child(3)
+					display: flex

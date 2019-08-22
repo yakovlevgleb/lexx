@@ -255,15 +255,20 @@
 
 	window.lexx.playVideo = ({
 		init: function () {
-			var playVideo = document.querySelectorAll('.js-play-video');
+			var playVideo = document.querySelectorAll('.js-play-video'),
+				videoPoster = document.querySelector('.js-video-poster');
 
 			if (playVideo) {
 				playVideo.forEach(function (item) {
 					item.addEventListener('click', function () {
 						var parent = this;
 						fadeOut(item, 0);
-						parent.parentElement.parentNode.querySelector('video').setAttribute("controls", "controls");
-						parent.parentElement.parentNode.querySelector('video').play();
+						if (videoPoster) {
+							fadeOut(videoPoster, 0);
+						}
+
+						parent.parentElement.parentNode.querySelector('.js-video').setAttribute("controls", "controls");
+						parent.parentElement.parentNode.querySelector('.js-video').play();
 					})
 				});
 			}

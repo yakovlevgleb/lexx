@@ -187,6 +187,12 @@
 			height: 298px
 			padding: 35px 49px
 			padding-bottom: 40px
+		
+		@include sdesktop
+			width: calc(100% / 2 - 18px)!important
+			margin-bottom: 36px
+			&:nth-child(odd)
+				margin-right: 36px
 
 		@media (min-width: 1171px)
 			&:nth-child(2n+2):not(&--empty)
@@ -194,7 +200,10 @@
 		
 		@include mob
 			width: 100%!important
-			padding: 35px 29px;
+			padding: 35px 29px
+
+			&:nth-child(odd)
+				margin-right: 0
 
 			&:nth-child(even)
 				background-color: $darker-blue!important
@@ -230,6 +239,8 @@
 		right: 0
 
 	&__slider-name
+		max-height: 155px
+		overflow: hidden
 		span
 			font-size: 22px
 			line-height: 26px

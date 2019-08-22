@@ -69,6 +69,25 @@ textarea
 textarea
 	resize: none
 
+h1
+	margin-bottom: 46px
+
+	text-transform: none
+
+	color: $black
+
+	font-size: 64px
+	font-weight: bold
+	line-height: 68px
+
+	@include desktop
+		font-size: 56px
+		line-height: 60px
+	
+	@media only screen and (max-width:500px)
+		font-size: 26px
+		line-height: 28px
+
 .ovh
 	overflow: hidden
 	position: fixed
@@ -103,6 +122,11 @@ textarea
 		@include pad
 			width: 100px
 
+.title
+	display: flex
+	flex-direction: column
+	align-items: center
+
 .white
 	.header
 		&__burger
@@ -126,9 +150,27 @@ textarea
 						background-color: $white
 	&.inner
 		.header
-			margin-bottom: 92px
+			margin-bottom: 66px
 
 			@include pad
-				margin-bottom: 45px
+				margin-bottom: 19px
+
 		.footer
 			margin-top: 94px
+
+.blue
+	.header__bottom
+		background-color: $dark-blue
+	.nav__sublist,
+	.choices__list--dropdown
+		background-color: $darker-blue
+
+	h1
+		color: $white
+
+	.footer
+			margin-top: 65px
+
+	&.inner
+		.header
+			margin-bottom: 67px

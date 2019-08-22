@@ -1,0 +1,110 @@
+.products
+	&__list
+		display: flex
+		flex-direction: row
+		flex-wrap: wrap
+		max-width: 940px
+		margin: 0 auto
+
+		@include desktop
+			max-width: 800px
+
+	&__item
+		background-color: $darker-blue
+		width: calc(100% / 2 - 18px)
+		padding: 36px 50px
+		height: 326px
+		display: flex
+		flex-direction: column
+		justify-content: space-between
+		position: relative
+		align-items: flex-start
+		margin-bottom: 36px
+		z-index: 2
+
+		@include desktop
+			padding: 37px 47px
+			height: 280px
+			margin-bottom: 31px
+		
+		@include mob
+			width: 100%
+			margin-right: 0
+			padding: 35px 29px;
+
+		&:nth-child(odd)
+			margin-right: 36px
+
+			@include mob
+				margin-right: 0
+
+		&:nth-child(even)
+			.products__hover-img
+				right: auto
+				left: 0
+
+		&:hover
+			.products__name
+				span
+					border-color: $t
+			
+			.products__hover-img
+				width: calc(100% + 250px)
+				height: calc(100% + 184px)
+				transition: .8s width, .8s height
+				opacity: 1
+
+				@media only screen and (max-width: 1340px)
+					width: calc(100% + 200px)
+					height: calc(100% + 124px)
+				
+				@media only screen and (max-width: 1290px)
+					width: calc(100% + 130px)
+					height: calc(100% + 60px)
+				
+				@include sdesktop
+					display: none
+
+	&__name
+		max-height: 155px
+		overflow: hidden
+		span
+			font-size: 22px
+			line-height: 26px
+			font-weight: 500
+			color: rgb(255, 255, 255)
+			border-bottom: 1px solid rgba(255, 255, 255, 0.25)
+			transition: border-color 0.5s ease 0s
+
+			@include desktop
+				font-size: 18px
+				line-height: 22px
+
+	&__link
+		position: absolute
+		left: 0
+		top: 0
+		right: 0
+		bottom: 0
+
+	&__hover-img
+		position: absolute
+		bottom: 0
+		right: 0
+		width: 100%
+		height: 100%
+		z-index: -2
+		opacity: 0
+		transition: .3s width, .3s height, .6s opacity
+		object-fit: cover
+		font-family: 'object-fit: cover;'
+
+	&__bg
+		background-color: $darker-blue
+		width: 100%
+		height: 100%
+		z-index: 0
+		position: absolute
+		left: 0
+		top: 0
+		z-index: -1

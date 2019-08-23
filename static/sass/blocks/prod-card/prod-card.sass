@@ -1,0 +1,131 @@
+.prod-card
+	margin-bottom: -2px
+	.wrapper
+		max-width: 1100px
+
+		@include desktop
+			max-width: 1026px
+
+	&__container
+		display: flex
+
+		@media only screen and (max-width: 900px)
+			flex-direction: column-reverse
+	
+	&__column
+		width: calc(100% / 2 - 18px)
+		margin-right: 36px
+		display: flex
+		flex-direction: column
+		align-items: flex-start
+
+		@media only screen and (max-width: 900px)
+			width: 100%
+			margin-right: 0
+
+		&:last-child
+			margin-right: 0
+
+			@media only screen and (max-width: 900px)
+				margin-bottom: 40px
+
+	&__info
+		font-size: 18px
+		line-height: 24px
+		color: $black
+		font-weight: normal
+		margin-bottom: 57px
+
+		@include desktop
+			font-size: 17px
+			line-height: 23px
+
+	&__video
+		font-size: 18px
+		line-height: 24px
+		font-weight: 500
+		color: $black
+		position: relative
+		padding-left: 64px
+		margin-bottom: 62px
+		display: inline-block
+
+		@include desktop
+			font-size: 17px
+			line-height: 24px
+
+		&:hover
+			&:before
+					background-color: $dark-blue
+					border-color: $dark-blue
+			&:after
+				filter: brightness(0) invert(100%)
+
+		&:before
+			content: ''
+			position: absolute -13px auto auto -1px
+			size: 49px 49px
+			border: 2px solid #e7e7e7
+			background-color: $t
+			border-radius: 50%
+			transition: .5s border-color, .5s background-color
+
+		&:after
+			content: ''
+			position: absolute 5px auto auto 20px
+			background-image: inline('play-gray.svg')
+			width: width('play-gray.svg')
+			height: height('play-gray.svg')
+			transition: .5s filter
+
+	&__link
+		padding: 19px 38px
+		padding-bottom: 17px
+		font-size: 18px
+		line-height: 24px
+		font-weight: 500
+		color: $white
+		background-color: $dark-blue
+		position: relative
+
+		@include desktop
+			font-size: 17px
+			line-height: 24px
+			padding-bottom: 15px
+		
+		@include pad
+			padding: 19px
+		
+		&:before
+			content: ''
+			position: absolute
+			left: 50%
+			top: 50%
+			width: 100%
+			height: 100%
+			transition: .4s width, .4s height
+			background-color: $dark-blue
+			transform: translate(-50%, -50%)
+			z-index: -1
+			will-change: width, height
+
+		&:hover
+			&:before
+				width: calc(100% + 4px)
+				height: calc(100% + 4px)
+
+	&__overimg
+		width: 100%
+		height: 720px
+		background-color: #fcfcfc
+		position: relative
+
+		@include desktop
+			height: 627px
+
+	&__img
+			max-width: 100%
+			position: absolute
+			left: 50%
+			top: 50%
+			transform: translate(-50%, -50%)

@@ -144,7 +144,21 @@
 
 	window.lexx.obj = ({
 		init: function () {
-			var burger = document.querySelector('.js-burger');
+			var burger = document.querySelector('.js-burger'),
+				lightgallery = document.querySelectorAll('.lightgallery');
+			
+				if (lightgallery) {
+					lightgallery.forEach(function (item) {
+						lightGallery(item, {
+							youtubePlayerParams: {
+							modestbranding: 1,
+							showinfo: 0,
+							rel: 0,
+							controls: 0
+						}
+					});
+				});
+			}
 
 			if (burger) {
 				burger.addEventListener('click', function () {

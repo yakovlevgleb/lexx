@@ -339,27 +339,6 @@
 		}
 	}).init();
 
-	window.lexx.form = ({
-
-		init: function () {
-			var t = this;
-			if (document.querySelectorAll('.js-validate').length !== null) {
-				document.querySelectorAll('.js-validate').forEach(function (form) {
-					form.addEventListener('submit', function (e) {
-						if (!t.lexx.checkForm(form)) {
-							e.preventDefault();
-							e.stopPropagation();
-							form.classList.add('warning');
-						}
-					});
-				});
-			}
-
-			return this;
-		}
-	}).init();
-
-
 	window.lexx.checkForm = function checkForm(form) {
 		var checkResult = true;
 		var warningElems = form.querySelectorAll('.warning');
@@ -383,47 +362,32 @@
 							re = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
 							if (!re.test(elem.value)) {
 								elem.classList.add('warning');
-								elem.classList.remove('good');
 								checkResult = false;
-							} else {
-								elem.classList.add('good');
 							}
 							break;
 						case 'email':
 							re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
 							if (!re.test(elem.value)) {
 								elem.classList.add('warning');
-								elem.classList.remove('good');
 								checkResult = false;
-							} else {
-								elem.classList.add('good');
 							}
 							break;
 						case 'file':
 							if (elem.value.trim() === '') {
 								elem.nextElementSibling.classList.add('warning');
-								elem.nextElementSibling.classList.remove('good');
 								checkResult = false;
-							} else {
-								elem.nextElementSibling.classList.add('good');
 							}
 							break;
 						case 'select':
 							if (elem.nextSibling.querySelector('.choices__item').getAttribute('data-value') === '-1') {
 								elem.parentNode.classList.add('warning');
-								elem.parentNode.classList.remove('good');
 								checkResult = false;
-							} else {
-								elem.parentNode.classList.add('good');
 							}
 							break;
 						default:
 							if (elem.value.trim() === '') {
 								elem.classList.add('warning');
-								elem.classList.remove('good');
 								checkResult = false;
-							} else {
-								elem.classList.add('good');
 							}
 							break;
 					}
@@ -441,8 +405,52 @@
 		}
 
 		return checkResult;
-	}
-});
+	};
+
+	window.lexx.form = ({
+		init: function () {
+			if (document.querySelectorAll('.js-validate').length !== null) {
+				document.querySelectorAll('.js-validate').forEach(function (form) {
+					form.addEventListener('submit', function (e) {
+						if (!window.lexx.checkForm(form)) {
+							e.preventDefault();
+							e.stopPropagation();
+							form.classList.add('warning');
+						}
+					});
+				});
+			}
+
+			return this;
+		}
+	}).init();
+
+	window.lexx.yaMap = ({
+		init: function () {
+			if (document.querySelector('#js-init-map')) {
+
+				ymaps.ready(function () {
+					var myMap = new ymaps.Map('js-init-map', {
+						center: [
+							56.861677, 60.639866
+						],
+						zoom: 16,
+						controls: ['zoomControl'],
+					});
+
+					myMap.geoObjects.add(new ymaps.Placemark(myMap.getCenter(), {}, {
+						iconLayout: 'default#image',
+						iconImageHref: './static/i/pin.png',
+						iconImageSize: [44, 49],
+						cursor: 'default'
+					}));
+					myMap.behaviors.disable('scrollZoom');
+				})
+			}
+		}
+	}).init();
+
+}());
 
 // window.barter.checkPhone = ({
 // 	init: function () {
@@ -503,5 +511,3 @@
 
 // 	}
 // }).init();
-
-}());

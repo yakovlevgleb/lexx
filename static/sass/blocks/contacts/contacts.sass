@@ -1,0 +1,145 @@
+.contacts
+	&__map
+		height: 600px
+		width: 100%
+		margin-bottom: 61px
+
+		@include desktop
+			height: 540px
+		
+		@include pad
+			height: 300px
+
+	&__info
+		columns: 2
+		max-width: 1100px
+		margin: 0 auto
+		margin-bottom: 32px
+
+		@include pad
+			columns: 1
+
+	&__item
+		display: flex
+		flex-direction: column
+		break-inside: avoid-column
+		margin-bottom: 32px
+	
+	&__label
+		font-size: 14px
+		line-height: 17px
+		color: rgba(0,0,0,.5)
+		font-weight: normal
+		margin-bottom: 5px
+
+		@include desktop
+			font-size: 13px / 17px
+	
+	&__adress,
+	&__time
+		font-size: 18px
+		line-height: 24px
+		font-weight: normal
+		color: $black
+
+		@include desktop
+			font-size: 17px / 23px
+	
+	&__mail
+		font-size: 18px
+		line-height: 24px
+		font-weight: normal
+		color: $main-blue
+		border-bottom: 1px solid $main-blue
+		transition: .5s border-color
+		align-self: flex-start
+
+		@include desktop
+			font-size: 17px / 23px
+
+		&:hover
+			border-color: $t
+
+	&__phone
+		font-size: 18px
+		line-height: 24px
+		color: $black
+		font-weight: normal
+
+		@include desktop
+			font-size: 17px / 23px
+
+	&__form
+		max-width: 1100px
+		margin: 0 auto
+
+		@include desktop
+			max-width: 960px
+
+		form
+			display: flex
+			flex-direction: column
+			align-items: flex-start
+
+	&__form-title
+		font-size: 48px /52px
+		color: $black
+		font-weight: 500
+		text-align: center
+		margin-bottom: 37px
+
+		@include desktop
+			font-size: 34px / 38px
+			margin-bottom: 29px
+	
+	&__form-text
+		font-size: 15px / 20px
+		font-weight: normal
+		color: $black
+		text-align: center
+		margin-bottom: 43px
+
+		@include desktop
+			font-size: 14px / 20px
+			margin-bottom: 20px
+	
+	&__form-warn
+		font-size: 15px / 20px
+		font-weight: normal
+		color: $black
+		text-align: center
+		margin-bottom: 30px
+
+		@include desktop
+			font-size: 14px / 20px
+			margin-bottom: 30px
+
+		span
+			color: $red
+
+	&__form-column
+		width: calc(100% / 2 - 18px)
+		margin-right: 36px
+
+		@include pad
+			margin-right: 0
+			width: 100%
+			margin-bottom: 15px
+
+			&:last-child
+				margin-bottom: 0
+
+		&:nth-child(even)
+			margin-right: 0
+
+	&__form-row
+		display: flex
+		width: 100%
+
+		@include pad
+			flex-direction: column
+
+	&__btn
+		margin-top: 37px
+		align-self: center
+		min-width: 285px

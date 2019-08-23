@@ -1,0 +1,53 @@
+mixin contacts
+	section.contacts
+		.wrapper
+			.title
+				ul.breadcrumbs
+					li.breadcrumbs__item
+						a(href="#").breadcrumbs__link Главная
+					li.breadcrumbs__item
+						span.breadcrumbs__line /
+					li.breadcrumbs__item
+						span.breadcrumbs__link Контакты
+				h1 Контакты
+
+			.contacts__info
+				.contacts__item
+					p.contacts__label Адрес
+					p.contacts__adress 620137, Свердловская область, город Екатеринбург, улица Сулимова 50, офис 5.14
+				.contacts__item
+					p.contacts__label Электронная почта
+					a(href="mailto:info@lexxtechnology.com").contacts__mail info@lexxtechnology.com
+				.contacts__item
+					p.contacts__label Телефоны
+					a(href="tel:83432270205").contacts__phone +7 (343) 227-02-05
+					a(href="tel:83432270206").contacts__phone +7 (343) 227-02-06
+				.contacts__item
+					p.contacts__label Режим работы
+					p.contacts__time с 09:00 до 18:00 (перерыв с 13:30 до 14:30)
+
+			.contacts__map#js-init-map
+
+			.contacts__form
+				p.contacts__form-title Связаться с нами
+				p.contacts__form-text Обратите внимание, отправляя данную форму, вы даете согласие на обработку персональных данных.
+				p.contacts__form-warn Поля со звездочкой 
+					span *
+					| – обязательны для заполнения.
+				
+				form(action="").js-validate
+					.contacts__form-row
+						.contacts__form-column
+							.form-item
+								label(for="name").form-item__label Имя
+								input(type="text", id="name").form-item__input
+							.form-item
+								label(for="email").form-item__label Электронная почта 
+									span *
+								input(type="text", id="email", data-req="req", data-type="email").form-item__input
+						.contacts__form-column
+							.form-item
+								label(for="message").form-item__label Текст сообщения 
+									span *
+								textarea(id="message", data-req="req").form-item__textarea
+					button(type="submit").btn.contacts__btn Отправить

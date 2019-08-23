@@ -68,7 +68,7 @@
 	&__sublist
 		position: absolute
 		left: -20px
-		top: calc(100% + 14px)
+		top: calc(100% + 16px)
 		background-color: $dark-blue
 		padding: 25px 20px
 		z-index: 1
@@ -79,6 +79,9 @@
 		&:hover
 			visibility: visible
 			opacity: 1
+		
+		@include desktop
+			top: calc(100% + 14px)
 
 		@include pad
 			display: none

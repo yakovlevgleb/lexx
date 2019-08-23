@@ -1,0 +1,19 @@
+include blocks/blocks
+
+doctype html
+html(lang="ru")
+	+head('Главная')
+	body.white.inner
+		+header('./img/logo-black.png')
+		main
+			section.not-found
+				.wrapper
+					p.not-found__404 404
+					p.not-found__title Страница не найдена
+					.not-found__text
+						p Вы неправильно набрали адрес. Возможно такой страницы больше не существует. Воспользуйтесь главным меню, чтобы перейти на другую страницу.
+						p Вы также можете вернуться на 
+							a(href="#") главную страницу
+							|  сайта.
+		+footer
+	+scripts

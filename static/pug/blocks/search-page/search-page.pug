@@ -1,0 +1,61 @@
+mixin search-page
+	section.search
+		.wrapper
+			.title
+				ul.breadcrumbs
+					li.breadcrumbs__item
+						a(href="#").breadcrumbs__link Главная
+					li.breadcrumbs__item
+						span.breadcrumbs__line /
+					li.breadcrumbs__item
+						span.breadcrumbs__link Результаты поиска
+				h1 Результаты поиска
+
+			.search__form
+				form(action="").js-validate
+					input(type="text", data-req="req").search__input
+					button(type="submit").search__btn Поиск
+
+				.search__warn По вашему запросу «Lexx» найдено 37 страниц.
+			.search__results
+				.search__results-item
+					a(href="#").search__results-link
+						span Систем электропитания на базе топливных элементов
+					.search__results-text
+						p Также, в компанию 
+							span LEXX 
+							| TECHNOLOGY CORP входит АО «Инфосеть». Данная компания целиком и полностью осуществляет функции реализации проектов по строительству и дальнейшему обслуживанию стационарных Центров Обработки Данных. 
+				
+				.search__results-item
+					a(href="#").search__results-link
+						span Системы энергосбережения и стабилизации электрического тока
+					.search__results-text
+						p Системы автоматизации технологического оборудования и процессов, системы накопления и хранения энергии, систем электропитания на базе топливных элементов. 
+				
+				.search__results-item
+					a(href="#").search__results-link
+						span Системы оперативного постоянного тока
+					.search__results-text
+						p Непосредственно и через наши дочерние компании мы занимаемся производственным бизнесом, инжинирингом и продажей электрооборудования.
+
+				.search__results-item
+					a(href="#").search__results-link
+						span Источники бесперебойного питания
+					.search__results-text
+						p Непосредственно и через наши дочерние компании мы занимаемся производственным бизнесом, инжинирингом и продажей электрооборудования.
+
+				.search__results-item
+					a(href="#").search__results-link
+						span Системы гарантированного электроснабжения удаленных объектов
+					.search__results-text
+						p Системы автоматизации технологического оборудования и процессов, системы накопления и хранения энергии, систем электропитания на базе топливных элементов.
+
+				.search__results-item
+					a(href="#").search__results-link
+						span Системы и решения в области АСУТП
+					.search__results-text
+						p Также, в компанию 
+							span LEXX 
+							| TECHNOLOGY CORP входит АО «Инфосеть». Данная компания целиком и полностью осуществляет функции реализации проектов по строительству и дальнейшему обслуживанию стационарных Центров Обработки Данных. 
+			
+			button(type="button").btn.search__more Показать ещё

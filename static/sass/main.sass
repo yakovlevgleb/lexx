@@ -175,3 +175,39 @@ h1
 	&.inner
 		.header
 			margin-bottom: 67px
+
+.btn
+	padding: 19px 38px
+	padding-bottom: 17px
+	font-size: 18px
+	line-height: 24px
+	font-weight: 500
+	color: $white
+	background-color: $dark-blue
+	position: relative
+	cursor: pointer
+
+	@include desktop
+		font-size: 17px
+		line-height: 24px
+
+	@include pad
+		padding: 19px
+	
+	&:before
+		content: ''
+		position: absolute
+		left: 50%
+		top: 50%
+		width: 100%
+		height: 100%
+		transition: .4s width, .4s height
+		background-color: $dark-blue
+		transform: translate(-50%, -50%)
+		z-index: -1
+		will-change: width, height
+
+	&:hover
+		&:before
+			width: calc(100% + 4px)
+			height: calc(100% + 4px)

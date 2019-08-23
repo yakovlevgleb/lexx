@@ -279,29 +279,44 @@
 		init: function () {
 			var firstScreen = document.querySelector('.first-screen'),
 				iCatalog = document.querySelector('.icatalog'),
-				lastScrollTop = 0;
+				lastScrollTop = 0,
+				firstScroll = true;
+
 			if (document.body.classList.contains('index')) {
+
+				window.addEventListener('mousewheel', function (e) {
+					if (firstScroll && e.deltaY > 0) {
+						scrollTo(20, 0);
+						e.preventDefault();
+						this.setTimeout(function() {
+							firstScroll = false;
+						}, 400);
+					}	
+				}, { passive: false });
+
 				window.addEventListener("scroll", function (e) {
 					var st = window.pageYOffset || document.documentElement.scrollTop;
-	
+
 					if (st > lastScrollTop) {
-	
 						if (firstScreen.offsetHeight - this.window.scrollY < document.querySelector('.first-screen').offsetHeight && !firstScreen.classList.contains('hide')) {
 							firstScreen.classList.add('hide');
 							firstScreen.classList.remove('show');
-	
+							
 							iCatalog.classList.add('show');
 						}
 	
 					} else {
-						if (firstScreen.offsetHeight - this.window.scrollY === document.querySelector('.first-screen').offsetHeight && !firstScreen.classList.contains('show')) {
+						if (firstScreen.offsetHeight - this.window.scrollY === document.querySelector('.first-screen').offsetHeight && !firstScreen.classList.contains('show') && !firstScroll) {
 	
 							firstScreen.classList.add('show');
 							firstScreen.classList.remove('hide');
 	
 							iCatalog.classList.remove('show');
+
+							firstScroll = true;
 						}
 					}
+
 					lastScrollTop = st <= 0 ? 0 : st;
 				}, false);
 			}

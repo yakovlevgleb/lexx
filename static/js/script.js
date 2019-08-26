@@ -427,13 +427,13 @@
 
 	window.lexx.yaMap = ({
 		init: function () {
-			if (document.querySelector('#js-init-map')) {
+			var map = document.querySelector('#js-init-map');
+			if (map) {
+				var pinCoord = map.getAttribute('data-coords').split(', ');
 
 				ymaps.ready(function () {
 					var myMap = new ymaps.Map('js-init-map', {
-						center: [
-							56.861677, 60.639866
-						],
+						center: [parseFloat(pinCoord[0]), parseFloat(pinCoord[1])],
 						zoom: 16,
 						controls: ['zoomControl'],
 					});

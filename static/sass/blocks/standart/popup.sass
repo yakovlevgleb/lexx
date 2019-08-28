@@ -1,0 +1,174 @@
+.popup-bg
+	background-color: $main-blue
+	position: fixed
+	left: 0
+	bottom: 0
+	width: 100%
+	height: 0
+	z-index: 100
+	visibility: hidden
+	opacity: 0
+	user-select: none
+	transition: .5s height, .05s opacity, .05s visibility
+
+	&.active
+		height: 100%
+		visibility: visible
+		opacity: 1
+
+.popup
+	position: absolute
+	left: 50%
+	transform: translateX(-50%)
+	top: 214px
+	width: 960px
+	background-color: $white
+	z-index: 101
+	padding: 61px 48px
+	display: none
+	opacity: 0
+	will-change: opacity
+
+	&--w510
+		width: 510px
+	
+	&--w600
+		width: 600px
+	
+	&--search
+		background-color: $t
+
+		.popup__close
+			filter: brightness(0) invert(1)
+
+		.search__input
+			color: $white
+
+			&::placeholder
+				color: $white
+
+		.search__btn
+			filter: brightness(0) invert(1)
+			opacity: 1
+			transition: .5s opacity
+			&:hover
+				opacity: .7
+				filter: brightness(0) invert(1)
+
+	&.active
+		opacity: 1
+
+	@include desktop
+		top: 195px
+
+	@media only screen and (max-width: 1170px)
+		width: 85%
+	
+	@include pad
+		width: 95%
+		padding: 50px 20px
+
+	&__close
+		size: 28px 28px
+		background-image: inline('close.svg')
+		position: absolute
+		top: -48px
+		right: -48px
+		font-size: 0 / 0
+		filter: brightness(0) invert(1)
+		cursor: pointer
+		opacity: 1
+		transition: .5s transform
+
+		&:hover
+			transform: rotate(180deg)
+
+		@include pad
+			filter: brightness(100%) invert(0)
+			top: 18px
+			right: 18px
+
+
+.news-popup
+	&__data
+		font-size: 14px / 17px
+		color: $black
+		margin-bottom: 40px
+		display: inline-block
+
+		@include desktop
+			font-size: 13px / 17px
+
+	h2
+		margin-bottom: 20px
+
+		@include desktop
+			margin-bottom: 22px
+
+	&__btn
+		width: 285px
+		margin-top: 12px
+		margin-bottom: 9px
+
+		@include pad
+			width: 200px
+
+.form-popup
+	h2
+		font-size: 40px
+		line-height: 44px
+		font-weight: 500
+		color: $black
+		margin-bottom: 28px
+
+		@media only screen and (max-width: 500px)
+			font-size: 26px
+			line-height: 28px
+	
+	&__text
+		font-size: 15px
+		line-height: 21px
+		color: $black
+		margin-bottom: 20px
+	
+	&__warn
+		color: $black
+		font-size: 15px
+		line-height: 21px
+		margin-bottom: 30px
+
+		span
+			color: $red
+
+	&__btn
+		margin-top: 21px
+		min-width: 285px
+
+		@include pad
+			min-width: 200px
+			
+
+.thanks-popup
+	h2
+		font-size: 40px
+		line-height: 44px
+		font-weight: 500
+		color: $black
+		margin-bottom: 28px
+
+		@media only screen and (max-width: 500px)
+			font-size: 26px
+			line-height: 28px
+
+	p
+		font-size: 15px
+		line-height: 21px
+		color: $black
+		margin-bottom: 20px
+
+	&__btn
+		margin-top: 21px
+		min-width: 285px
+
+		@include pad
+			min-width: 200px

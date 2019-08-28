@@ -178,6 +178,10 @@ gulp.task('polyfill', function () {
 	return gulp.src('node_modules/babel-polyfill/dist/polyfill.js').pipe(gulp.dest(dirs.build + '/static/js'));
 });
 
+gulp.task('data', function () {
+	return gulp.src([dirs.source + '/data/*.json']).pipe(gulp.dest(dirs.build));
+});
+
 gulp.task('js-ext', function() {
 	if (jsList.length) {
 		return gulp.src(jsList).pipe(plumber({
@@ -218,7 +222,7 @@ gulp.task('js', function() {
 });
 
 gulp.task('build', function(callback) {
-	gulpSequence('clean', 'sass', 'fonts', 'js', 'js-ext', 'polyfill', 'pug-concat', 'icons', 'img', callback);
+	gulpSequence('clean', 'sass', 'fonts', 'js', 'js-ext', 'polyfill', 'pug-concat', 'icons', 'img', 'data', callback);
 });
 
 gulp.task('serve', ['build'], function() {

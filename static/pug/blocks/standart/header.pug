@@ -89,8 +89,8 @@ mixin header(logo)
 					li.nav__item
 						a(href="#").nav__link Контакты
 			.header__btns
-				button(type="button").header__btn.header__btn--search Поиск
-				button(type="button").header__btn.header__btn--message Связаться с нами
+				button(type="button", data-popup="search").js-open-popup.header__btn.header__btn--search Поиск
+				button(type="button", data-popup="call-us").js-open-popup.header__btn.header__btn--message Связаться с нами
 
 		.header__bottom
 			.logo

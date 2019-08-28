@@ -1,0 +1,52 @@
+mixin hidden-blocks
+	.popup-bg.js-popup-overflow
+	.hidden-blocks
+		.popup#one-news
+			button(type="button").popup__close.js-close-popup Закрыть
+			.news-popup.wis-content
+				h2 Очень-очень большой заголовок новости
+				data.news-popup__data 12/07/2019
+				p Компания была создана 5 июня 2019 года в Екатеринбурге. В нее сейчас входит дочерняя компания «Континент» которая на 100% принадлежит компании LEXX TECHNOLOGY CORP. Компания никогда не была банкротом и не участвовала в разбирательствах по слиянию или поглощению.
+				p Непосредственно и через наши дочерние компании мы занимаемся производственным бизнесом, инжинирингом и продажей электрооборудования, в частности: систем экономии электроэнергии, системы стабилизации, систем оперативного постоянного тока, систем гарантированного электроснабжения удалённых объектов и источников бесперебойного питания, строительством центров обработки данных, разработкой решений в области электроснабжения, АСУТП, цифровым производством.
+				p Также, в компанию LEXX TECHNOLOGY CORP входит АО «Инфосеть». Данная компания целиком и полностью осуществляет функции реализации проектов по строительству и дальнейшему обслуживанию стационарных Центров Обработки Данных. 
+				img(src="./img/default-img.jpg", alt="")
+				p Компания планирует рост продаж путем расширения производства для выполнения контрактных обязательств крупнейших российских корпораций, дальнейшего развития филиальной сети в России, выхода на рынок СНГ, Европы, Ближнего Востока, Соединенных Штатов, Стран Латинской Америки. Компания стремится быть эксклюзивным представителем крупнейших Европейских и Американских компаний в своей отрасли на российском рынке.
+				button(type="button").news-popup__btn.btn.js-close-popup Закрыть
+
+		.popup.popup--w510#call-us
+			button(type="button").popup__close.js-close-popup Закрыть
+			.form-popup
+				h2 Связаться с нами
+				p.form-popup__text Обратите внимание, отправляя данную форму, вы даете согласие на обработку персональных данных.
+				p.form-popup__warn Поля со звездочкой 
+					span * 
+					| – обязательны для заполнения.
+				form(action="").js-validate
+					.form-item
+						label(for="name").form-item__label Имя
+						input(type="text", id="name").form-item__input
+					.form-item
+						label(for="email").form-item__label Электронная почта 
+							span *
+						input(type="text", id="email", data-req="req", data-type="email").form-item__input
+
+					.form-item
+						label(for="message").form-item__label Текст сообщения 
+							span *
+						textarea(id="message", data-req="req").form-item__textarea.form-item__textarea--h95
+					button(type="submit").btn.form-popup__btn Отправить
+					p.warning-text Некоторые обязательные поля не заполнены или заполнены с ошибкой.
+
+		.popup.popup--w600#thanks
+			button(type="button").popup__close.js-close-popup Закрыть
+			.thanks-popup
+				h2 Сообщение отправлено
+				p Ваше сообщение успешно отправлено. Спасибо за внимание.
+				button(type="button").btn.thanks-popup__btn.js-close-popup Закрыть
+
+		.popup.popup--search#search
+			button(type="button").popup__close.js-close-popup Закрыть
+			.search__form.search__form--popup
+				form(action="").js-validate
+					input(type="text", data-req="req", placeholder="Поиск по сайту").search__input
+					button(type="submit").search__btn Поиск

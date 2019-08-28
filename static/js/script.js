@@ -13,7 +13,7 @@
 		if (ms) {
 			var opacity = 0;
 			var timer = setInterval(function () {
-				opacity += 50 / ms;
+				opacity += 25 / ms;
 				if (opacity >= 1) {
 					clearInterval(timer);
 					opacity = 1;
@@ -127,7 +127,7 @@
 	function wrap(el, wrapper) {
 		el.parentNode.insertBefore(wrapper, el);
 		wrapper.appendChild(el);
-	}
+	};
 
 	if (/Mobi/.test(navigator.userAgent)) {
 		var tableOver = document.createElement("div");
@@ -135,7 +135,7 @@
 		document.querySelectorAll('table:not([class])').forEach(function (item) {
 			wrap(item, tableOver)
 		})
-	}
+	};
 
 	document.querySelectorAll('body *:not([class]):not([id])').forEach((item) => {
 		item.innerHTML = item.innerHTML.replace(/( |&nbsp;|\(){1}([№а-яА-Я]){1}(\.){0,1} /g, '$1$2$3&nbsp;');
@@ -169,11 +169,15 @@
 						_t.classList.add('header__burger--active');
 						body.classList.add('ovh');
 
-						fadeIn(nav, '350', 0, 'flex');
+						fadeIn(nav, '350', function() {
+							nav.classList.add('active');
+						}, 'flex');
 					} else {
 						_t.classList.remove('header__burger--active');
 						body.classList.remove('ovh');
-						fadeOut(nav, '350');
+						fadeOut(nav, '350', function() {
+							nav.classList.remove('active')
+						});
 					}
 					return false;
 				});
@@ -344,13 +348,23 @@
 		var warningElems = form.querySelectorAll('.warning');
 		var formElems = form.querySelectorAll('input, textarea, select');
 		var agreementElems = form.querySelectorAll('input[name^=agreement]');
+		var warningText = form.querySelector('.warning-text');
 
 		form.classList.remove('warning');
 
 		if (warningElems.length) {
 			warningElems.forEach(function (warningElem) {
 				warningElem.classList.remove('warning');
+				if (warningText) {
+					warningText.classList.remove('active')
+				}
 			});
+		}
+
+		var showWarningText = function () {
+			if (warningText && !warningText.classList.contains('.active')) {
+				warningText.classList.add('active')
+			}
 		}
 
 		if (formElems.length) {
@@ -361,34 +375,39 @@
 						case 'tel':
 							re = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
 							if (!re.test(elem.value)) {
-								elem.classList.add('warning');
-								checkResult = false;
-							}
+									elem.classList.add('warning');
+									checkResult = false;
+									showWarningText();
+								}
 							break;
 						case 'email':
 							re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
 							if (!re.test(elem.value)) {
-								elem.classList.add('warning');
-								checkResult = false;
-							}
+									elem.classList.add('warning');
+									checkResult = false;
+									showWarningText();
+								}
 							break;
 						case 'file':
 							if (elem.value.trim() === '') {
-								elem.nextElementSibling.classList.add('warning');
-								checkResult = false;
-							}
+									elem.nextElementSibling.classList.add('warning');
+									checkResult = false;
+									showWarningText();
+								}
 							break;
 						case 'select':
 							if (elem.nextSibling.querySelector('.choices__item').getAttribute('data-value') === '-1') {
-								elem.parentNode.classList.add('warning');
-								checkResult = false;
-							}
+									elem.parentNode.classList.add('warning');
+									checkResult = false;
+									showWarningText();
+								}
 							break;
 						default:
 							if (elem.value.trim() === '') {
-								elem.classList.add('warning');
-								checkResult = false;
-							}
+									elem.classList.add('warning');
+									checkResult = false;
+									showWarningText();
+								}
 							break;
 					}
 				}
@@ -425,7 +444,7 @@
 		}
 	}).init();
 
-	window.lexx.yaMap = ({
+	window.lexx.contactsMap = ({
 		init: function () {
 			var map = document.querySelector('#js-init-map');
 			if (map) {
@@ -450,64 +469,217 @@
 		}
 	}).init();
 
+	window.lexx.projectsMap = ({
+		init: function () {
+			var map = document.querySelector('#yaMap'),
+				request = new XMLHttpRequest();
+
+			//request.open('GET', '/data.json', true);
+
+			if (map) {
+				ymaps.ready(function () {
+					var myMap = new ymaps.Map('yaMap', {
+							center: [55.751574, 37.573856],
+							zoom: 9
+						}, {
+							searchControlProvider: 'yandex#search'
+						}),
+						clusterNumbers = [5],
+						clusterer = new ymaps.Clusterer({
+							// Зададим массив, описывающий иконки кластеров разного размера.
+							clusterIcons: [{
+									href: './static/i/pin.png',
+									size: [45, 49],
+									offset: [-22, -25]
+								},
+								{
+									href: './static/i/pin.png',
+									size: [45, 49],
+									offset: [-22, -25]
+								}
+							],
+							// Эта опция отвечает за размеры кластеров.
+							// В данном случае для кластеров, содержащих до 100 элементов,
+							// будет показываться маленькая иконка. Для остальных - большая.
+							clusterIconContentLayout: null,
+							//clusterNumbers: clusterNumbers
+						}),
+						getPointData = function (index) {
+							return {
+								balloonContentBody: 'балун <strong>метки ' + index + '</strong>',
+								clusterCaption: ''
+							};
+						},
+						points = [
+							[55.831903, 37.411961],
+							[55.763338, 37.565466],
+							[55.763338, 37.565466],
+							[55.744522, 37.616378],
+							[55.780898, 37.642889],
+							[55.793559, 37.435983],
+							[55.800584, 37.675638],
+							[55.716733, 37.589988],
+							[55.775724, 37.560840],
+							[55.822144, 37.433781],
+							[55.874170, 37.669838],
+							[55.716770, 37.482338],
+							[55.780850, 37.750210],
+							[55.810906, 37.654142],
+							[55.865386, 37.713329],
+							[55.847121, 37.525797],
+							[55.778655, 37.710743],
+							[55.623415, 37.717934],
+							[55.863193, 37.737000],
+							[55.866770, 37.760113],
+							[55.698261, 37.730838],
+							[55.633800, 37.564769],
+							[55.639996, 37.539400],
+							[55.690230, 37.405853],
+							[55.775970, 37.512900],
+							[55.775777, 37.442180],
+							[55.811814, 37.440448],
+							[55.751841, 37.404853],
+							[55.627303, 37.728976],
+							[55.816515, 37.597163],
+							[55.664352, 37.689397],
+							[55.679195, 37.600961],
+							[55.673873, 37.658425],
+							[55.681006, 37.605126],
+							[55.876327, 37.431744],
+							[55.843363, 37.778445],
+							[55.875445, 37.549348],
+							[55.662903, 37.702087],
+							[55.746099, 37.434113],
+							[55.838660, 37.712326],
+							[55.774838, 37.415725],
+							[55.871539, 37.630223],
+							[55.657037, 37.571271],
+							[55.691046, 37.711026],
+							[55.803972, 37.659610],
+							[55.616448, 37.452759],
+							[55.781329, 37.442781],
+							[55.844708, 37.748870],
+							[55.723123, 37.406067],
+							[55.858585, 37.484980]
+						],
+						geoObjects = [];
+
+					//   const MyIconContentLayout = ymaps.templateLayoutFactory.createClass(
+					//   	"<span style='color: #000;'>{{ orderSum }}</span>"
+					//   );
+
+					//   // определяем ObjectManager
+					// const objectManager = new ymaps.ObjectManager({
+					// 	clusterize: true,
+					// 	clusterIconContentLayout: MyIconContentLayout
+					// });
+
+					for (var i = 0, len = points.length; i < len; i++) {
+						geoObjects[i] = new ymaps.Placemark(points[i], getPointData(i));
+					}
+
+					clusterer.add(geoObjects);
+					myMap.geoObjects.add(clusterer);
+
+					myMap.setBounds(clusterer.getBounds(), {
+						checkZoomRange: true
+					});
+
+					// request.onload = function () {
+					// 	if (this.status >= 200 && this.status < 400) {
+					// 		var data = JSON.parse(this.response);
+					// 		// objectManager.add(data);
+
+					// 		for (var i = 0, len = data.features.length; i < len; i++) {
+					// 			geoObjects[i] = new ymaps.Placemark(data.features[i].geometry.coordinates);
+					// 		}
+					// 	}
+					// };
+
+					// request.send();
+				});
+			}
+		}
+	}).init();
+
+	window.lexx.popups = ({
+		init: function () {
+			var popups = document.querySelectorAll('.js-open-popup'),
+				topPosition = window.scrollY + 100,
+				bg = document.querySelector('.js-popup-overflow');
+
+			if (popups) {
+				popups.forEach(function (item) {
+					var target = document.getElementById(item.dataset.popup);
+					item.addEventListener('click', function (e) {
+						e.preventDefault();
+						if (document.body.classList.contains('ovh') && document.querySelector('.header__top').classList.contains('active')) {
+							var burger = document.querySelector('.js-burger'),
+								nav = document.querySelector('.header__top');
+							document.body.classList.remove('ovh');
+							burger.classList.remove('header__burger--active');
+							fadeOut(nav, '350', function () {
+								nav.classList.remove('active')
+							});
+						}
+
+						if (target) {
+							target.style.top = '' + topPosition + 'px';
+							bg.classList.add('active');
+							fadeIn(target, 350, function () {
+								window.lexx.closePopup(target, true);
+								target.classList.add('active');
+							});
+						}
+					});
+				});
+			}
+		}
+	}).init();
+
+	window.lexx.openPopup = function openPopup(id) {
+		var target = document.getElementById(id),
+			topPosition = window.scrollY + 100,
+			bg = document.querySelector('.js-popup-overflow');
+
+		target.style.top = '' + topPosition + 'px';
+		bg.classList.add('active');
+		fadeIn(target, 350, function () {
+			window.lexx.closePopup(target, true);
+			target.classList.add('active');
+		});
+	};
+
+	window.lexx.closePopup = function closePopup(popup, flag) {
+		var btns = popup.querySelectorAll('.js-close-popup'),
+			bg = document.querySelector('.js-popup-overflow');
+
+		// function handler(event) {
+		// 	if (!popup.contains(event.target)) {
+		// 		fadeOut(bg, 500);
+		// 		fadeOut(popup, 500);
+		// 		document.removeEventListener('click', handler);
+		// 	}
+		// }
+
+		// document.addEventListener('click', handler);
+
+		if (flag) {
+			btns.forEach(function (item) {
+				item.addEventListener('click', function (e) {
+					bg.classList.remove('active');
+					fadeOut(popup, 500, function () {});
+					popup.classList.remove('active')
+					// document.removeEventListener('click', handler);
+				})
+			});
+		} else {
+			bg.classList.remove('active');
+			popup.classList.remove('active')
+
+			fadeOut(popup, 500, function () {});
+			// document.removeEventListener('click', handler);
+		}
+	};
+
 }());
-
-// window.barter.checkPhone = ({
-// 	init: function () {
-// 		var phoneMask = document.querySelectorAll('.js-phone-mask');
-// 		if (phoneMask) {
-// 			phoneMask.forEach(function (item) {
-// 				new IMask(item, {
-// 					mask: '+{7}(000)000-00-00'
-// 				});
-// 			});
-// 		}
-// 	}
-// }).init();
-
-
-// window.barter.popups = ({
-// 	init: function () {
-// 		var popups = document.querySelectorAll('.js-open-popup'),
-// 			bg = document.querySelector('.popup-overflow');
-
-// 		popups.forEach(function (item) {
-// 			item.addEventListener('click', function () {
-// 				var target = document.getElementById(item.dataset.popup);
-// 				if ((item.dataset.popup == "add-promo")||(item.dataset.popup == "offer-window"))
-// 					document.body.classList.add("ovh");
-// 				fadeIn(bg, 350);
-// 				fadeIn(target, 350, function () {
-// 					closePopup(target);
-// 					if (item.dataset.popup == "logogallery") window.barter.heroSlider.update();
-// 				});
-
-// 			});
-// 		});
-
-// 		function closePopup(popup) {
-// 			var btns = popup.querySelectorAll('.js-close-popup');
-
-// 			btns.forEach(function (item) {
-// 				item.addEventListener('click', function (e) {
-// 					fadeOut(bg, 500);
-// 					fadeOut(popup, 500, function(){
-// 						document.body.classList.remove("ovh");
-// 					});
-// 					document.removeEventListener('click', handler);
-// 				})
-// 			});
-
-// 			function handler(event) {
-// 				if (!popup.contains(event.target)) {
-// 					fadeOut(bg, 500);
-// 					fadeOut(popup, 500);
-// 					document.removeEventListener('click', handler);
-// 				}
-// 			}
-
-// 			document.addEventListener('click', handler);
-// 		};
-
-// 	}
-// }).init();

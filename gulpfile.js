@@ -215,7 +215,7 @@ gulp.task('js', function() {
 			presets: ["env"],
 			minified: true
 		}))
-		.pipe(uglify())
+		// .pipe(uglify())
 		.pipe(rename('script.min.js'))
 		.pipe(gulp.dest(dirs.build + "/static/js/"))
 		.pipe(browserSync.stream());

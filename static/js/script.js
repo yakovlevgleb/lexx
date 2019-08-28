@@ -469,134 +469,84 @@
 		}
 	}).init();
 
+
 	window.lexx.projectsMap = ({
 		init: function () {
 			var map = document.querySelector('#yaMap'),
 				request = new XMLHttpRequest();
 
-			//request.open('GET', '/data.json', true);
+			request.open('GET', '/data.json', true);
 
 			if (map) {
 				ymaps.ready(function () {
 					var myMap = new ymaps.Map('yaMap', {
 							center: [55.751574, 37.573856],
-							zoom: 9
-						}, {
-							searchControlProvider: 'yandex#search'
-						}),
-						clusterNumbers = [5],
+							zoom: 3.5,
+							controls: ['zoomControl']
+						},{}),
+						MyIconContentLayout = ymaps.templateLayoutFactory.createClass(
+							'<div class="cluster-number">{{ properties.geoObjects.length }}</div>'
+						),
 						clusterer = new ymaps.Clusterer({
-							// Зададим массив, описывающий иконки кластеров разного размера.
 							clusterIcons: [{
-									href: './static/i/pin.png',
+									href: './static/i/pin-many.svg',
 									size: [45, 49],
-									offset: [-22, -25]
-								},
-								{
-									href: './static/i/pin.png',
-									size: [45, 49],
-									offset: [-22, -25]
+									offset: [-22.5, -49]
 								}
 							],
-							// Эта опция отвечает за размеры кластеров.
-							// В данном случае для кластеров, содержащих до 100 элементов,
-							// будет показываться маленькая иконка. Для остальных - большая.
-							clusterIconContentLayout: null,
-							//clusterNumbers: clusterNumbers
+							clusterIconContentLayout: MyIconContentLayout
 						}),
-						getPointData = function (index) {
+						getPointData = function (text) {
 							return {
-								balloonContentBody: 'балун <strong>метки ' + index + '</strong>',
-								clusterCaption: ''
+								balloonContentBody: '<p class="balloon-text">' + text + '</p>'
 							};
 						},
-						points = [
-							[55.831903, 37.411961],
-							[55.763338, 37.565466],
-							[55.763338, 37.565466],
-							[55.744522, 37.616378],
-							[55.780898, 37.642889],
-							[55.793559, 37.435983],
-							[55.800584, 37.675638],
-							[55.716733, 37.589988],
-							[55.775724, 37.560840],
-							[55.822144, 37.433781],
-							[55.874170, 37.669838],
-							[55.716770, 37.482338],
-							[55.780850, 37.750210],
-							[55.810906, 37.654142],
-							[55.865386, 37.713329],
-							[55.847121, 37.525797],
-							[55.778655, 37.710743],
-							[55.623415, 37.717934],
-							[55.863193, 37.737000],
-							[55.866770, 37.760113],
-							[55.698261, 37.730838],
-							[55.633800, 37.564769],
-							[55.639996, 37.539400],
-							[55.690230, 37.405853],
-							[55.775970, 37.512900],
-							[55.775777, 37.442180],
-							[55.811814, 37.440448],
-							[55.751841, 37.404853],
-							[55.627303, 37.728976],
-							[55.816515, 37.597163],
-							[55.664352, 37.689397],
-							[55.679195, 37.600961],
-							[55.673873, 37.658425],
-							[55.681006, 37.605126],
-							[55.876327, 37.431744],
-							[55.843363, 37.778445],
-							[55.875445, 37.549348],
-							[55.662903, 37.702087],
-							[55.746099, 37.434113],
-							[55.838660, 37.712326],
-							[55.774838, 37.415725],
-							[55.871539, 37.630223],
-							[55.657037, 37.571271],
-							[55.691046, 37.711026],
-							[55.803972, 37.659610],
-							[55.616448, 37.452759],
-							[55.781329, 37.442781],
-							[55.844708, 37.748870],
-							[55.723123, 37.406067],
-							[55.858585, 37.484980]
-						],
 						geoObjects = [];
+						
+						clusterer.events
+						.add(['mouseenter', 'mouseleave'], function (e) {
+							var target = e.get('target'),
+								type = e.get('type');
+							if (typeof target.getGeoObjects == 'undefined') {
+								if (type == 'mouseenter') {
+									console.log('Жопа');
+									target.balloon.open({
+										closeButton: false
+									})
+									console.log(target)
+								} else {
+									console.log('Писька')
+									target.balloon.close()
+								}
+							}
+						});
 
-					//   const MyIconContentLayout = ymaps.templateLayoutFactory.createClass(
-					//   	"<span style='color: #000;'>{{ orderSum }}</span>"
-					//   );
+					request.onload = function () {
+						if (this.status >= 200 && this.status < 400) {
+							var data = JSON.parse(this.response);
+							for (var i = 0, len = data.features.length; i < len; i++) {
+								geoObjects[i] = new ymaps.Placemark(
+									[parseFloat(data.features[i].geometry.coordinates[0]), parseFloat(data.features[i].geometry.coordinates[1])]
+									, getPointData(data.features[i].properties.balloonContent), {
+									iconLayout: 'default#image',
+									iconImageHref: './static/i/pin.svg',
+									iconImageSize: [45, 49],
+									iconImageOffset: [-22.5, -49],
+									balloonOffset:[0, -60],
+									hideIconOnBalloonOpen: false
+								});
+							}
+						}
 
-					//   // определяем ObjectManager
-					// const objectManager = new ymaps.ObjectManager({
-					// 	clusterize: true,
-					// 	clusterIconContentLayout: MyIconContentLayout
-					// });
+						clusterer.add(geoObjects);
+						myMap.geoObjects.add(clusterer);
 
-					for (var i = 0, len = points.length; i < len; i++) {
-						geoObjects[i] = new ymaps.Placemark(points[i], getPointData(i));
-					}
+						myMap.setBounds(clusterer.getBounds(), {
+							checkZoomRange: true
+						});
+					};
 
-					clusterer.add(geoObjects);
-					myMap.geoObjects.add(clusterer);
-
-					myMap.setBounds(clusterer.getBounds(), {
-						checkZoomRange: true
-					});
-
-					// request.onload = function () {
-					// 	if (this.status >= 200 && this.status < 400) {
-					// 		var data = JSON.parse(this.response);
-					// 		// objectManager.add(data);
-
-					// 		for (var i = 0, len = data.features.length; i < len; i++) {
-					// 			geoObjects[i] = new ymaps.Placemark(data.features[i].geometry.coordinates);
-					// 		}
-					// 	}
-					// };
-
-					// request.send();
+					request.send();
 				});
 			}
 		}

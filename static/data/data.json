@@ -811,7 +811,7 @@
 				]
 			},
 			"properties": {
-				"balloonContent": "Содержимое балуна",
+				"balloonContent": "ADASDASD",
 				"clusterCaption": "Еще одна метка",
 				"hintContent": "Текст подсказки"
 			}
@@ -826,7 +826,7 @@
 				]
 			},
 			"properties": {
-				"balloonContent": "Содержимое балуна",
+				"balloonContent": "Системы энергосбережения и стабилизации электрического тока ",
 				"clusterCaption": "Еще одна метка",
 				"hintContent": "Текст подсказки"
 			}

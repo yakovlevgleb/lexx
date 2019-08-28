@@ -41,3 +41,33 @@
 		height: 600px
 		position: relative
 		left: calc(-1*(100vw - 1440px)/2)
+
+		.cluster-number
+			font-family: 'Gotham Pro'
+			font-size: 17px
+			color: $white
+			font-weight: 500
+		
+		.balloon-text
+			font-family: 'Gotham Pro'
+			color: $white
+			font-size: 14px
+			line-height: 20px
+			font-weight: 500
+
+		[class*="balloon"]
+			box-sizing: border-box
+			max-width: 200px
+
+		[class*="balloon__content"]
+			background-color: $main-blue!important
+			margin-right: 0!important
+			padding: 20px 25px!important
+			width: 100%
+
+		[class*="balloon__tail"]
+			display: none
+
+		[class*="balloon__close"]
+			display: none
+		

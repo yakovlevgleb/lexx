@@ -1,3 +1,18 @@
+.hidden-blocks
+	width: 100vw
+	height: 100vh
+	position: relative
+	overflow-y: auto
+	position: fixed
+	top: 0
+	left: 0
+	z-index: 10
+	padding: 100px 0
+	visibility: hidden
+
+	&.active
+		visibility: visible
+
 .popup-bg
 	background-color: $main-blue
 	position: fixed
@@ -5,10 +20,10 @@
 	bottom: 0
 	width: 100%
 	height: 0
-	z-index: 100
+	z-index: 10
 	visibility: hidden
 	opacity: 0
-	user-select: none
+	// user-select: none
 	transition: .5s height, .05s opacity, .05s visibility
 
 	&.active
@@ -28,6 +43,7 @@
 	display: none
 	opacity: 0
 	will-change: opacity
+	margin-bottom: 214px
 
 	&--w510
 		width: 510px
@@ -59,7 +75,7 @@
 		opacity: 1
 
 	@include desktop
-		top: 195px
+		top: 150px
 
 	@media only screen and (max-width: 1170px)
 		width: 85%
@@ -67,6 +83,7 @@
 	@include pad
 		width: 95%
 		padding: 50px 20px
+		top: 50px
 
 	&__close
 		size: 28px 28px
@@ -224,6 +241,7 @@
 		margin: 0
 		right: 0
 		left: 0
+		top: 0
 
 		@include mob
 			width: 48px
@@ -260,6 +278,7 @@
 		margin: 0
 		right: 0
 		left: 0
+		top: 0
 
 		@include mob
 			width: 48px

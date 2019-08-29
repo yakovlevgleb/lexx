@@ -580,14 +580,14 @@
 	window.lexx.popups = ({
 		init: function () {
 			var popups = document.querySelectorAll('.js-open-popup'),
-				bg = document.querySelector('.js-popup-overflow');
+				bg = document.querySelector('.js-popup-overflow'),
+				hiddenBlocks = document.querySelector('.hidden-blocks');
 
 			if (popups) {
 				popups.forEach(function (item) {
 					var target = document.getElementById(item.dataset.popup);
 					
 					item.addEventListener('click', function (e) {
-						var topPosition = window.scrollY + 100;
 
 						e.preventDefault();
 						if (document.body.classList.contains('ovh') && document.querySelector('.header__top').classList.contains('active')) {
@@ -601,8 +601,9 @@
 						}
 
 						if (target) {
-							target.style.top = '' + topPosition + 'px';
+
 							bg.classList.add('active');
+							hiddenBlocks.classList.add('active');
 							fadeIn(target, 350, function () {
 								window.lexx.closePopup(target, true);
 								target.classList.add('active');
@@ -619,11 +620,11 @@
 
 	window.lexx.openPopup = function openPopup(id) {
 		var target = document.getElementById(id),
-			topPosition = window.scrollY + 100,
-			bg = document.querySelector('.js-popup-overflow');
+			bg = document.querySelector('.js-popup-overflow'),
+			hiddenBlocks = document.querySelector('.hidden-blocks');
 
-		target.style.top = '' + topPosition + 'px';
 		bg.classList.add('active');
+		hiddenBlocks.classList.add('active');
 		fadeIn(target, 350, function () {
 			window.lexx.closePopup(target, true);
 			target.classList.add('active');
@@ -635,27 +636,18 @@
 
 	window.lexx.closePopup = function closePopup(popup, flag) {
 		var btns = popup.querySelectorAll('.js-close-popup'),
-			bg = document.querySelector('.js-popup-overflow');
-
-		// function handler(event) {
-		// 	if (!popup.contains(event.target)) {
-		// 		fadeOut(bg, 500);
-		// 		fadeOut(popup, 500);
-		// 		document.removeEventListener('click', handler);
-		// 	}
-		// }
-
-		// document.addEventListener('click', handler);
+			bg = document.querySelector('.js-popup-overflow'),
+			hiddenBlocks = document.querySelector('.hidden-blocks');
 
 		function closing(e) {
 			bg.classList.remove('active');
-				if (popup.querySelector('.js-projects-popup-slider').swiper) {
-					popup.querySelector('.js-projects-popup-slider').swiper.destroy(true, true)
-				}
-				fadeOut(popup, 0, function () {
-			});
-			popup.classList.remove('active')
-			// document.removeEventListener('click', handler);
+			hiddenBlocks.classList.remove('active');
+			if (popup.querySelector('.js-projects-popup-slider') && popup.querySelector('.js-projects-popup-slider').swiper) {
+				popup.querySelector('.js-projects-popup-slider').swiper.destroy(true, true);
+			}
+			fadeOut(popup, 0);
+			popup.classList.remove('active');
+
 			e.target.removeEventListener('click', closing);
 		}
 
@@ -663,17 +655,19 @@
 			btns.forEach(function (item) {
 				item.addEventListener('click', closing, {passive: true});
 			})
+			bg.addEventListener('click', closing, {passive: true})
 		} else {
 			bg.classList.remove('active');
-			popup.classList.remove('active')
+			hiddenBlocks.classList.remove('active');
+			popup.classList.remove('active');
 
 			fadeOut(popup, 0, function () {
 				if (popup.querySelector('.js-projects-popup-slider')) {
-					popup.querySelector('.js-projects-popup-slider').swiper.destroy(true, true)
+					popup.querySelector('.js-projects-popup-slider').swiper.destroy(true, true);
 				}
 			});
-			// document.removeEventListener('click', handler);
 		}
+
 	};
 
 }());

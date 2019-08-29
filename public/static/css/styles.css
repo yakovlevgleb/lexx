@@ -5153,6 +5153,10 @@ h1 {
         width: 100%;
         margin-right: 0;
         margin-bottom: 40px; }
+        .cards__item:nth-last-child(1), .cards__item:nth-last-child(2), .cards__item:nth-last-child(3) {
+          margin-bottom: 40px; }
+        .cards__item:last-child {
+          margin-bottom: 0; }
       .cards__over-pic {
         height: 240px; }
     .project-popup .swiper-button-next {

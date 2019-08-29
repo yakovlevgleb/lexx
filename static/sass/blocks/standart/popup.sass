@@ -172,3 +172,120 @@
 
 		@include pad
 			min-width: 200px
+
+.project-popup
+	&__data
+		font-size: 14px / 17px
+		color: $black
+		margin-bottom: 40px
+		display: inline-block
+
+		@include desktop
+			font-size: 13px / 17px
+
+	h2
+		margin-bottom: 20px
+
+		@include desktop
+			margin-bottom: 22px
+
+	&__btn
+		width: 285px
+		margin-top: 12px
+		margin-bottom: 9px
+
+		@include pad
+			width: 200px
+	
+	&__slider
+		margin-bottom: 38px
+
+	&__slider-img
+		width: 100%
+		max-width: 100%
+	
+	.swiper-slide
+		font-size: 0
+		line-height: 0
+	
+	.swiper-navigation
+		position: absolute
+		width: 100%
+		bottom: 0
+		justify-content: flex-end
+		display: flex
+
+	.swiper-button-next
+		width: 68px
+		height: 68px
+		position: relative
+		background-color: $darker-blue
+		background-image: none
+		margin: 0
+		right: 0
+		left: 0
+
+		@include mob
+			width: 48px
+			height: 48px
+
+		&:hover
+			&:before
+				left: calc(50% + 5px)
+
+		&:before
+			content: ''
+			top: 50%
+			left: 50%
+			transform: translate(-50%, -50%)
+			position: absolute
+			background-image: inline('hero-next-btn.svg')
+			width: 39px
+			height: 26px
+			background-size: 39px 26px
+			transition: .8s left
+			background-repeat: no-repeat
+
+			@include mob
+				width: 29px
+				height: 16px
+				background-size: 29px 16px
+	
+	.swiper-button-prev
+		width: 68px
+		height: 68px
+		position: relative
+		background-color: $dark-blue
+		background-image: none
+		margin: 0
+		right: 0
+		left: 0
+
+		@include mob
+			width: 48px
+			height: 48px
+
+		&:hover
+			&:before
+				left: calc(50% - 5px)
+
+		&:before
+			content: ''
+			top: 50%
+			left: 50%
+			transform: translate(-50%, -50%) rotate(180deg)
+			position: absolute
+			background-image: inline('hero-next-btn.svg')
+			width: 39px
+			height: 26px
+			background-size: 39px 26px
+			transition: .8s left
+			background-repeat: no-repeat
+
+			@include mob
+				width: 29px
+				height: 16px
+				background-size: 29px 16px
+
+
+

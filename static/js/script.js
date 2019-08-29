@@ -271,6 +271,23 @@
 		}
 	}).init();
 
+	window.lexx.projectsSlider = function projectsSlider() {
+		var slider = document.querySelector('.js-projects-popup-slider');
+
+		if (slider) {
+			var pSlider = new Swiper(slider, {
+				speed: 1200,
+				loop: 1,
+				slidesPerView: 1,
+				autoHeight: 1,
+				navigation: {
+					nextEl: '.js-projects-popup-slider .swiper-button-next',
+					prevEl: '.js-projects-popup-slider .swiper-button-prev',
+				}
+			});
+		}
+	};
+
 	window.lexx.playVideo = ({
 		init: function () {
 			var playVideo = document.querySelectorAll('.js-play-video'),
@@ -459,9 +476,9 @@
 
 					myMap.geoObjects.add(new ymaps.Placemark(myMap.getCenter(), {}, {
 						iconLayout: 'default#image',
-						iconImageHref: './static/i/pin.png',
+						iconImageHref: './static/i/pin.svg',
 						iconImageSize: [44, 49],
-						cursor: 'default'
+						offset: [-22.5, -49]
 					}));
 					myMap.behaviors.disable('scrollZoom');
 				})
@@ -476,6 +493,12 @@
 				request = new XMLHttpRequest();
 
 			request.open('GET', '/data.json', true);
+
+			function generatePopup(id) {
+				
+				// $.ajax = {};
+				window.lexx.openPopup('projects');
+			}
 
 			if (map) {
 				ymaps.ready(function () {
@@ -496,26 +519,18 @@
 							],
 							clusterIconContentLayout: MyIconContentLayout
 						}),
-						getPointData = function (text) {
-							return {
-								balloonContentBody: '<p class="balloon-text">' + text + '</p>'
-							};
-						},
+
 						geoObjects = [];
-						
-						clusterer.events
-						.add(['mouseenter', 'mouseleave'], function (e) {
+
+						clusterer.events.add(['mouseenter', 'mouseleave'], function (e) {
 							var target = e.get('target'),
 								type = e.get('type');
 							if (typeof target.getGeoObjects == 'undefined') {
 								if (type == 'mouseenter') {
-									console.log('Жопа');
 									target.balloon.open({
 										closeButton: false
 									})
-									console.log(target)
 								} else {
-									console.log('Писька')
 									target.balloon.close()
 								}
 							}
@@ -526,15 +541,25 @@
 							var data = JSON.parse(this.response);
 							for (var i = 0, len = data.features.length; i < len; i++) {
 								geoObjects[i] = new ymaps.Placemark(
-									[parseFloat(data.features[i].geometry.coordinates[0]), parseFloat(data.features[i].geometry.coordinates[1])]
-									, getPointData(data.features[i].properties.balloonContent), {
-									iconLayout: 'default#image',
-									iconImageHref: './static/i/pin.svg',
-									iconImageSize: [45, 49],
-									iconImageOffset: [-22.5, -49],
-									balloonOffset:[0, -60],
-									hideIconOnBalloonOpen: false
+									[parseFloat(data.features[i].geometry.coordinates[0]), parseFloat(data.features[i].geometry.coordinates[1])],
+									{
+										balloonContentBody: '<p class="balloon-text">' + data.features[i].properties.balloonContent + '</p>',
+										id: data.features[i].id
+									},
+									{
+										iconLayout: 'default#image',
+										iconImageHref: './static/i/pin.svg',
+										iconImageSize: [45, 49],
+										iconImageOffset: [-22.5, -49],
+										balloonOffset:[0, -60],
+										hideIconOnBalloonOpen: false,
+										
 								});
+
+								geoObjects[i].events.add(['click'], function (e) {
+									var target = e.get('target')
+									generatePopup(target.properties.get("id"));
+								})
 							}
 						}
 
@@ -542,7 +567,7 @@
 						myMap.geoObjects.add(clusterer);
 
 						myMap.setBounds(clusterer.getBounds(), {
-							checkZoomRange: true
+							checkZoomRange: false
 						});
 					};
 
@@ -555,20 +580,22 @@
 	window.lexx.popups = ({
 		init: function () {
 			var popups = document.querySelectorAll('.js-open-popup'),
-				topPosition = window.scrollY + 100,
 				bg = document.querySelector('.js-popup-overflow');
 
 			if (popups) {
 				popups.forEach(function (item) {
 					var target = document.getElementById(item.dataset.popup);
+					
 					item.addEventListener('click', function (e) {
+						var topPosition = window.scrollY + 100;
+
 						e.preventDefault();
 						if (document.body.classList.contains('ovh') && document.querySelector('.header__top').classList.contains('active')) {
 							var burger = document.querySelector('.js-burger'),
 								nav = document.querySelector('.header__top');
 							document.body.classList.remove('ovh');
 							burger.classList.remove('header__burger--active');
-							fadeOut(nav, '350', function () {
+							fadeOut(nav, '0', function () {
 								nav.classList.remove('active')
 							});
 						}
@@ -579,6 +606,9 @@
 							fadeIn(target, 350, function () {
 								window.lexx.closePopup(target, true);
 								target.classList.add('active');
+								if (target.querySelector('.js-projects-popup-slider')) {
+									window.lexx.projectsSlider();
+								}
 							});
 						}
 					});
@@ -591,6 +621,10 @@
 		var target = document.getElementById(id),
 			topPosition = window.scrollY + 100,
 			bg = document.querySelector('.js-popup-overflow');
+
+		if (id == 'projects') {
+			window.lexx.projectsSlider();
+		}
 
 		target.style.top = '' + topPosition + 'px';
 		bg.classList.add('active');
@@ -614,20 +648,31 @@
 
 		// document.addEventListener('click', handler);
 
+		function closing(e) {
+			bg.classList.remove('active');
+				if (popup.querySelector('.js-projects-popup-slider').swiper) {
+					popup.querySelector('.js-projects-popup-slider').swiper.destroy(true, true)
+				}
+				fadeOut(popup, 0, function () {
+			});
+			popup.classList.remove('active')
+			// document.removeEventListener('click', handler);
+			e.target.removeEventListener('click', closing);
+		}
+
 		if (flag) {
 			btns.forEach(function (item) {
-				item.addEventListener('click', function (e) {
-					bg.classList.remove('active');
-					fadeOut(popup, 500, function () {});
-					popup.classList.remove('active')
-					// document.removeEventListener('click', handler);
-				})
-			});
+				item.addEventListener('click', closing, {passive: true});
+			})
 		} else {
 			bg.classList.remove('active');
 			popup.classList.remove('active')
 
-			fadeOut(popup, 500, function () {});
+			fadeOut(popup, 0, function () {
+				if (popup.querySelector('.js-projects-popup-slider')) {
+					popup.querySelector('.js-projects-popup-slider').swiper.destroy(true, true)
+				}
+			});
 			// document.removeEventListener('click', handler);
 		}
 	};

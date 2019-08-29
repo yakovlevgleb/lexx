@@ -40,7 +40,13 @@
 		width: 100vw
 		height: 600px
 		position: relative
-		left: calc(-1*(100vw - 1440px)/2)
+		left: calc(-1*(100vw - 100%)/2)
+
+		@include desktop
+			left: calc(-1*(100vw - 100%)/2)
+		
+		@include pad
+			display: none
 
 		.cluster-number
 			font-family: 'Gotham Pro'

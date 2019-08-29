@@ -6,7 +6,6 @@
 .vscode/
 css/*.css
 node_modules/
-public/
 Thumbs.db
 build/
 design/

@@ -492,7 +492,7 @@
 			var map = document.querySelector('#yaMap'),
 				request = new XMLHttpRequest();
 
-			request.open('GET', '/data.json', true);
+			request.open('GET', './data.json', true);
 
 			function generatePopup(id) {
 				
@@ -622,15 +622,14 @@
 			topPosition = window.scrollY + 100,
 			bg = document.querySelector('.js-popup-overflow');
 
-		if (id == 'projects') {
-			window.lexx.projectsSlider();
-		}
-
 		target.style.top = '' + topPosition + 'px';
 		bg.classList.add('active');
 		fadeIn(target, 350, function () {
 			window.lexx.closePopup(target, true);
 			target.classList.add('active');
+			if (id == 'projects') {
+				window.lexx.projectsSlider();
+			}
 		});
 	};
 

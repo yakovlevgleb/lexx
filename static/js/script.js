@@ -1,7 +1,12 @@
 ﻿"use strict";
 
+
 (function () {
 	window.lexx = {};
+
+	if (window.NodeList && !NodeList.prototype.forEach) {
+		NodeList.prototype.forEach = Array.prototype.forEach;
+	}
 
 	function fadeIn(elem, ms, cb, d) {
 		if (!d) d = 'block';
@@ -137,7 +142,7 @@
 		})
 	};
 
-	document.querySelectorAll('body *:not([class]):not([id])').forEach((item) => {
+	document.querySelectorAll('body *:not([class]):not([id]), .hero__title').forEach((item) => {
 		item.innerHTML = item.innerHTML.replace(/( |&nbsp;|\(){1}([№а-яА-Я]){1}(\.){0,1} /g, '$1$2$3&nbsp;');
 		item.innerHTML = item.innerHTML.replace(/( |&nbsp;|\(){1}([№а-яА-Я]){1}(\.){0,1} /g, '$1$2$3&nbsp;');
 	});
@@ -169,13 +174,13 @@
 						_t.classList.add('header__burger--active');
 						body.classList.add('ovh');
 
-						fadeIn(nav, '350', function() {
+						fadeIn(nav, '350', function () {
 							nav.classList.add('active');
 						}, 'flex');
 					} else {
 						_t.classList.remove('header__burger--active');
 						body.classList.remove('ovh');
-						fadeOut(nav, '350', function() {
+						fadeOut(nav, '350', function () {
 							nav.classList.remove('active')
 						});
 					}
@@ -319,23 +324,31 @@
 
 			if (document.body.classList.contains('index')) {
 
-				window.addEventListener('mousewheel', function (e) {
-					if (firstScroll && e.deltaY > 0) {
+				function firstScrollStatus(e, mParam) {
+					var mDeltaY = mParam === 'scroll' ? e.currentTarget.pageYOffset : e.deltaY;
+					if (firstScroll && mDeltaY > 0) {
 						scrollTo(20, 0);
 						e.preventDefault();
-						this.setTimeout(function () {
+
+						setTimeout(function () {
 							firstScroll = false;
 						}, 400);
 					}
+				}
+
+				window.addEventListener('wheel', function (e) {
+					firstScrollStatus(e, 'wheel');
 				}, {
 					passive: false
 				});
 
 				window.addEventListener("scroll", function (e) {
+					firstScrollStatus(e, 'scroll');
+
 					var st = window.pageYOffset || document.documentElement.scrollTop;
 
 					if (st > lastScrollTop) {
-						if (firstScreen.offsetHeight - this.window.scrollY < document.querySelector('.first-screen').offsetHeight && !firstScreen.classList.contains('hide')) {
+						if (firstScreen.offsetHeight - window.pageYOffset < firstScreen.offsetHeight && !firstScreen.classList.contains('hide')) {
 							firstScreen.classList.add('hide');
 							firstScreen.classList.remove('show');
 
@@ -343,7 +356,7 @@
 						}
 
 					} else {
-						if (firstScreen.offsetHeight - this.window.scrollY === document.querySelector('.first-screen').offsetHeight && !firstScreen.classList.contains('show') && !firstScroll) {
+						if (firstScreen.offsetHeight - window.pageYOffset === firstScreen.offsetHeight && !firstScreen.classList.contains('show') && !firstScroll) {
 
 							firstScreen.classList.add('show');
 							firstScreen.classList.remove('hide');
@@ -392,39 +405,39 @@
 						case 'tel':
 							re = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
 							if (!re.test(elem.value)) {
-									elem.classList.add('warning');
-									checkResult = false;
-									showWarningText();
-								}
+								elem.classList.add('warning');
+								checkResult = false;
+								showWarningText();
+							}
 							break;
 						case 'email':
 							re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
 							if (!re.test(elem.value)) {
-									elem.classList.add('warning');
-									checkResult = false;
-									showWarningText();
-								}
+								elem.classList.add('warning');
+								checkResult = false;
+								showWarningText();
+							}
 							break;
 						case 'file':
 							if (elem.value.trim() === '') {
-									elem.nextElementSibling.classList.add('warning');
-									checkResult = false;
-									showWarningText();
-								}
+								elem.nextElementSibling.classList.add('warning');
+								checkResult = false;
+								showWarningText();
+							}
 							break;
 						case 'select':
 							if (elem.nextSibling.querySelector('.choices__item').getAttribute('data-value') === '-1') {
-									elem.parentNode.classList.add('warning');
-									checkResult = false;
-									showWarningText();
-								}
+								elem.parentNode.classList.add('warning');
+								checkResult = false;
+								showWarningText();
+							}
 							break;
 						default:
 							if (elem.value.trim() === '') {
-									elem.classList.add('warning');
-									checkResult = false;
-									showWarningText();
-								}
+								elem.classList.add('warning');
+								checkResult = false;
+								showWarningText();
+							}
 							break;
 					}
 				}
@@ -495,7 +508,7 @@
 			request.open('GET', './data.json', true);
 
 			function generatePopup(id) {
-				
+
 				// $.ajax = {};
 				window.lexx.openPopup('projects');
 			}
@@ -506,55 +519,52 @@
 							center: [55.751574, 37.573856],
 							zoom: 3.5,
 							controls: ['zoomControl']
-						},{}),
+						}, {}),
 						MyIconContentLayout = ymaps.templateLayoutFactory.createClass(
 							'<div class="cluster-number">{{ properties.geoObjects.length }}</div>'
 						),
 						clusterer = new ymaps.Clusterer({
 							clusterIcons: [{
-									href: './static/i/pin-many.svg',
-									size: [45, 49],
-									offset: [-22.5, -49]
-								}
-							],
+								href: './static/i/pin-many.svg',
+								size: [45, 49],
+								offset: [-22.5, -49]
+							}],
 							clusterIconContentLayout: MyIconContentLayout
 						}),
 
 						geoObjects = [];
 
-						clusterer.events.add(['mouseenter', 'mouseleave'], function (e) {
-							var target = e.get('target'),
-								type = e.get('type');
-							if (typeof target.getGeoObjects == 'undefined') {
-								if (type == 'mouseenter') {
-									target.balloon.open({
-										closeButton: false
-									})
-								} else {
-									target.balloon.close()
-								}
+					clusterer.events.add(['mouseenter', 'mouseleave'], function (e) {
+						var target = e.get('target'),
+							type = e.get('type');
+						if (typeof target.getGeoObjects == 'undefined') {
+							if (type == 'mouseenter') {
+								target.balloon.open({
+									closeButton: false
+								})
+							} else {
+								target.balloon.close()
 							}
-						});
+						}
+					});
 
 					request.onload = function () {
 						if (this.status >= 200 && this.status < 400) {
 							var data = JSON.parse(this.response);
 							for (var i = 0, len = data.features.length; i < len; i++) {
 								geoObjects[i] = new ymaps.Placemark(
-									[parseFloat(data.features[i].geometry.coordinates[0]), parseFloat(data.features[i].geometry.coordinates[1])],
-									{
+									[parseFloat(data.features[i].geometry.coordinates[0]), parseFloat(data.features[i].geometry.coordinates[1])], {
 										balloonContentBody: '<p class="balloon-text">' + data.features[i].properties.balloonContent + '</p>',
 										id: data.features[i].id
-									},
-									{
+									}, {
 										iconLayout: 'default#image',
 										iconImageHref: './static/i/pin.svg',
 										iconImageSize: [45, 49],
 										iconImageOffset: [-22.5, -49],
-										balloonOffset:[0, -60],
+										balloonOffset: [0, -60],
 										hideIconOnBalloonOpen: false,
-										
-								});
+
+									});
 
 								geoObjects[i].events.add(['click'], function (e) {
 									var target = e.get('target')
@@ -586,7 +596,7 @@
 			if (popups) {
 				popups.forEach(function (item) {
 					var target = document.getElementById(item.dataset.popup);
-					
+
 					item.addEventListener('click', function (e) {
 
 						e.preventDefault();
@@ -653,9 +663,13 @@
 
 		if (flag) {
 			btns.forEach(function (item) {
-				item.addEventListener('click', closing, {passive: true});
+				item.addEventListener('click', closing, {
+					passive: true
+				});
 			})
-			bg.addEventListener('click', closing, {passive: true})
+			bg.addEventListener('click', closing, {
+				passive: true
+			})
 		} else {
 			bg.classList.remove('active');
 			hiddenBlocks.classList.remove('active');

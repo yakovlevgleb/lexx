@@ -559,7 +559,9 @@
 							var target = e.get('target');
 
 							ajaxPopup('' + target.properties.get("id") + '');
-							window.lexx.openPopup('projects');
+							if (ajaxPopup('' + target.properties.get("id") + '') != false) {
+								window.lexx.openPopup('projects');
+							}
 						})
 					}
 

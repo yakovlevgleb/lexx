@@ -11,7 +11,6 @@
 		max-width: 1100px
 		margin: 0 auto
 		padding: 65px 0
-		margin-bottom: 100px
 
 		@include desktop
 			max-width: 960px
@@ -26,6 +25,9 @@
 			background-color: #fcfcfc
 			transform: translateX(-50%)
 			z-index: -1
+	
+	&__list
+		margin-top: 100px
 
 	&__btn
 		width: 326px
@@ -63,14 +65,15 @@
 			font-weight: 500
 
 		[class*="balloon"]
-			box-sizing: border-box
-			max-width: 200px
+			// box-sizing: border-box
+			// max-width: 200px
 
 		[class*="balloon__content"]
 			background-color: $main-blue!important
 			margin-right: 0!important
 			padding: 20px 25px!important
 			width: 100%
+			max-width: inherit
 
 		[class*="balloon__tail"]
 			display: none

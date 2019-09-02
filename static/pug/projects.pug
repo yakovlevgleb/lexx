@@ -7,6 +7,51 @@ html(lang="ru")
 	body.white.inner
 		+header('./img/logo-black.png')
 		main
+			script.
+				window.pinsData = {
+				"type": "FeatureCollection",
+				"features": [{"id": 2,"geometry": {"coordinates": [55.237633,61.771677]},"properties": {"balloonContent": "Компания «Символ» приняла участие в&nbsp;оснащении концертно-эстрадного комплекса «Артек-Арена» МДЦ «Артек», Республика Крым"}},
+				{"id": 3,"geometry": {"coordinates": [55.2480442,61.800773]},"properties": {"balloonContent": "Выполнены работы по устройству полов в&nbsp;корпусах комплекса «Прибрежный» МДЦ «Артек», Республика Крым"}},
+				{"id": 4,"geometry": {"coordinates": [55.1706912,61.3748313]},"properties": {"balloonContent": "Реконструкция футбольного поля ФК «Металлург» в&nbsp;г.&nbsp;Аша Челябинской области"}},
+				{"id": 5,"geometry": {"coordinates": [55.168408,61.127715]},"properties": {"balloonContent": "Компания «Символ» завершила производство работ по оснащению тренировочной площадки игры в&nbsp;мини-футбол во Дворце Спорта «Метар-Спорт» г.&nbsp;Челябинск"}},
+				{"id": 6,"geometry": {"coordinates": [55.223114,61.292450]},"properties": {"balloonContent": "Компания «Символ» завершила работы по устройству спортивных полов в&nbsp;ФОК «Россия», г.&nbsp;Пыть-Ях, ХМАО-Югра"}},
+				{"id": 7,"geometry": {"coordinates": [55.234217,61.313416]},"properties": {"balloonContent": "Техническое обслуживание системы спортивных покрытий MFMA на площадке МФК «Газпром-Югра», г.&nbsp;Югорск"}},
+				{"id": 8,"geometry": {"coordinates": [54.960011,60.945010]},"properties": {"balloonContent": "Восстановительный ремонт в&nbsp;спортивной школе «Юпитер», г.&nbsp;Нижний Тагил"}},
+				{"id": 9,"geometry": {"coordinates": [55.111914,60.428343]},"properties": {"balloonContent": "Завершен весь комплекс работ по строительству стадиона в&nbsp;п.&nbsp;Бреды Челябинской области"}}]
+				}
+				function get_items(){
+				var elem   = document.getElementById("more-link");
+				var table  = elem.getAttribute('data-table');
+				var col    = parseInt(elem.getAttribute('data-col'));
+				var num    = parseInt(elem.getAttribute('data-num'));
+				var total  = parseInt(elem.getAttribute('data-total'));
+				if ((col*num)>=total) {
+				elem.style.display = 'none';
+				return false;
+				}
+				var pageURL = window.location.href;
+				var url = new URL(pageURL);
+				url.searchParams.set('table', table);
+				url.searchParams.set('col', col);
+				url.searchParams.set('num', num);
+				url.searchParams.set('action', 'get_items');
+				url.searchParams.set('ajax', '1');
+				var xhr = new XMLHttpRequest();
+				xhr.open('GET', url);
+				xhr.setRequestHeader('Content-type', 'text/html; charset=UTF-8');
+				xhr.send();
+				xhr.onload = function() {
+				responseObj = xhr.responseText;
+				document.getElementById('items-list').insertAdjacentHTML("beforeend", responseObj);
+				var elem   = document.getElementById("more-link");
+				elem.setAttribute('data-col', (col+1));
+				if (((col+1)*num)>=total) {
+				elem.style.display = 'none';
+				}
+				};
+				return false;
+				}
+
 			+projects
 		+footer
 		+hidden-blocks

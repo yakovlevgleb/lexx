@@ -489,7 +489,7 @@
 
 					myMap.geoObjects.add(new ymaps.Placemark(myMap.getCenter(), {}, {
 						iconLayout: 'default#image',
-						iconImageHref: './static/i/pin.svg',
+						iconImageHref: '/static/i/pin.svg',
 						iconImageSize: [44, 49],
 						offset: [-22.5, -49]
 					}));
@@ -502,16 +502,7 @@
 
 	window.lexx.projectsMap = ({
 		init: function () {
-			var map = document.querySelector('#yaMap'),
-				request = new XMLHttpRequest();
-
-			request.open('GET', './data.json', true);
-
-			function generatePopup(id) {
-
-				// $.ajax = {};
-				window.lexx.openPopup('projects');
-			}
+			var map = document.querySelector('#yaMap');
 
 			if (map) {
 				ymaps.ready(function () {
@@ -525,7 +516,7 @@
 						),
 						clusterer = new ymaps.Clusterer({
 							clusterIcons: [{
-								href: './static/i/pin-many.svg',
+								href: '/static/i/pin-many.svg',
 								size: [45, 49],
 								offset: [-22.5, -49]
 							}],
@@ -548,40 +539,37 @@
 						}
 					});
 
-					request.onload = function () {
-						if (this.status >= 200 && this.status < 400) {
-							var data = JSON.parse(this.response);
-							for (var i = 0, len = data.features.length; i < len; i++) {
-								geoObjects[i] = new ymaps.Placemark(
-									[parseFloat(data.features[i].geometry.coordinates[0]), parseFloat(data.features[i].geometry.coordinates[1])], {
-										balloonContentBody: '<p class="balloon-text">' + data.features[i].properties.balloonContent + '</p>',
-										id: data.features[i].id
-									}, {
-										iconLayout: 'default#image',
-										iconImageHref: './static/i/pin.svg',
-										iconImageSize: [45, 49],
-										iconImageOffset: [-22.5, -49],
-										balloonOffset: [0, -60],
-										hideIconOnBalloonOpen: false,
+					var data = window.pinsData;
+					for (var i = 0, len = data.features.length; i < len; i++) {
+						geoObjects[i] = new ymaps.Placemark(
+							[parseFloat(data.features[i].geometry.coordinates[0]), parseFloat(data.features[i].geometry.coordinates[1])], {
+								balloonContentBody: '<p class="balloon-text">' + data.features[i].properties.balloonContent + '</p>',
+								id: data.features[i].id
+							}, {
+								iconLayout: 'default#image',
+								iconImageHref: '/static/i/pin.svg',
+								iconImageSize: [45, 49],
+								iconImageOffset: [-22.5, -49],
+								balloonOffset: [0, -60],
+								balloonMaxWidth: 200,
+								hideIconOnBalloonOpen: false
+							});
 
-									});
+						geoObjects[i].events.add(['click'], function (e) {
+							var target = e.get('target');
 
-								geoObjects[i].events.add(['click'], function (e) {
-									var target = e.get('target')
-									generatePopup(target.properties.get("id"));
-								})
-							}
-						}
+							ajaxPopup('' + target.properties.get("id") + '');
+							window.lexx.openPopup('projects');
+						})
+					}
 
-						clusterer.add(geoObjects);
-						myMap.geoObjects.add(clusterer);
+					clusterer.add(geoObjects);
+					myMap.geoObjects.add(clusterer);
 
-						myMap.setBounds(clusterer.getBounds(), {
-							checkZoomRange: false
-						});
-					};
+					myMap.setBounds(clusterer.getBounds(), {
+						checkZoomRange: false
+					});
 
-					request.send();
 				});
 			}
 		}
@@ -589,17 +577,16 @@
 
 	window.lexx.popups = ({
 		init: function () {
-			var popups = document.querySelectorAll('.js-open-popup'),
+			var popups = '.js-open-popup',
 				bg = document.querySelector('.js-popup-overflow'),
 				hiddenBlocks = document.querySelector('.hidden-blocks');
 
-			if (popups) {
-				popups.forEach(function (item) {
-					var target = document.getElementById(item.dataset.popup);
-
-					item.addEventListener('click', function (e) {
-
+			document.addEventListener("click", function (e) {
+				for (var {target} = e; target && target !== this && target !== document; target = target.parentNode) {
+					if (target.matches(popups)) {
 						e.preventDefault();
+						var element = document.getElementById(target.dataset.popup);
+
 						if (document.body.classList.contains('ovh') && document.querySelector('.header__top').classList.contains('active')) {
 							var burger = document.querySelector('.js-burger'),
 								nav = document.querySelector('.header__top');
@@ -610,21 +597,21 @@
 							});
 						}
 
-						if (target) {
-
+						if (element) {
 							bg.classList.add('active');
 							hiddenBlocks.classList.add('active');
-							fadeIn(target, 350, function () {
-								window.lexx.closePopup(target, true);
-								target.classList.add('active');
-								if (target.querySelector('.js-projects-popup-slider')) {
+							fadeIn(element, 350, function () {
+								window.lexx.closePopup(element, true);
+								element.classList.add('active');
+								if (element.querySelector('.js-projects-popup-slider')) {
 									window.lexx.projectsSlider();
 								}
 							});
 						}
-					});
-				});
-			}
+					}
+				}
+			});
+
 		}
 	}).init();
 
@@ -681,7 +668,6 @@
 				}
 			});
 		}
-
 	};
 
 }());

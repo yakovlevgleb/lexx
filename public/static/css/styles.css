@@ -3833,7 +3833,6 @@ h1 {
   margin-right: 36px;
   margin-bottom: 36px;
   padding: 50px 48px;
-  padding-top: 0;
   position: relative; }
   .prod-category__item:nth-child(3n+3) {
     margin-right: 0; }
@@ -3858,10 +3857,12 @@ h1 {
 
 .prod-category__over-img {
   position: relative;
-  height: 494px; }
+  height: 420px;
+  margin-bottom: 20px; }
 
 .prod-category__img {
   max-width: 100%;
+  max-height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
   font-family: 'object-fit: cover;';
@@ -4743,7 +4744,7 @@ h1 {
       margin-bottom: 32px;
       width: calc(100% / 3 - 21.3333px); }
     .prod-category__over-img {
-      height: 451px; }
+      height: 380px; }
       .prod-category__name span {
         font-size: 18px;
         line-height: 22px; }

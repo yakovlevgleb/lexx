@@ -4195,6 +4195,13 @@ h1 {
   color: #000000;
   text-align: center;
   margin-bottom: 43px; }
+  .contacts__form-text a {
+    color: #034ea2;
+    border-bottom: 1px solid #034ea2;
+    -webkit-transition: .5s border-color;
+    transition: .5s border-color; }
+    .contacts__form-text a:hover {
+      border-color: transparent; }
 
 .contacts__form-warn {
   line-height: 20px;

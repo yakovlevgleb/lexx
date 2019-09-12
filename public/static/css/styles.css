@@ -3116,9 +3116,9 @@ h1 {
 .popup {
   position: absolute;
   left: 50%;
-  -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
-  top: 214px;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  top: 50%;
   width: 960px;
   background-color: #ffffff;
   z-index: 101;
@@ -4673,8 +4673,6 @@ h1 {
       .subnav__link {
         line-height: 20px;
         font-size: 15px; }
-    .popup {
-      top: 150px; }
     .news-popup__data {
       line-height: 17px;
       font-size: 13px; }
@@ -5088,7 +5086,9 @@ h1 {
     .popup {
       width: 95%;
       padding: 50px 20px;
-      top: 50px; }
+      top: 50px;
+      -webkit-transform: translate(-50%, 0);
+              transform: translate(-50%, 0); }
       .popup__close {
         -webkit-filter: brightness(100%) invert(0);
                 filter: brightness(100%) invert(0);

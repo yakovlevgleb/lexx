@@ -150,7 +150,20 @@
 	window.lexx.obj = ({
 		init: function () {
 			var burger = document.querySelector('.js-burger'),
-				lightgallery = document.querySelectorAll('.lightgallery');
+				lightgallery = document.querySelectorAll('.lightgallery'),
+				header = document.querySelector('.header'),
+				footer = document.querySelector('.footer'),
+				main = document.querySelector('main'),
+				headerMargin = parseFloat(window.getComputedStyle(header).marginTop) + parseFloat(window.getComputedStyle(header).marginBottom),
+				footerMargin = parseFloat(window.getComputedStyle(footer).marginTop) + parseFloat(window.getComputedStyle(footer).marginBottom);
+
+			window.addEventListener('resize', function () {
+				var calc = header.offsetHeight + headerMargin + footer.offsetHeight + footerMargin;
+
+				main.style.minHeight = 'calc(100vh - ' + calc +'px)';
+			});
+
+			window.dispatchEvent(new Event('resize'));
 
 			if (lightgallery) {
 				lightgallery.forEach(function (item) {
@@ -322,7 +335,7 @@
 				lastScrollTop = 0,
 				firstScroll = true;
 
-			if (document.body.classList.contains('index')) {
+			if (document.body.classList.contains('index') && window.innerWidth > 1170) {
 
 				function firstScrollStatus(e, mParam) {
 					var mDeltaY = mParam === 'scroll' ? e.currentTarget.pageYOffset : e.deltaY;

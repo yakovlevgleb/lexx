@@ -12,7 +12,8 @@ const jsList = [
 	dirs.source + '/js/ext/choices.js',
 	dirs.source + '/js/ext/swiper.js',
 	dirs.source + '/js/ext/ofi.js',
-	dirs.source + '/js/ext/lightgallery.js'
+	dirs.source + '/js/ext/lightgallery.js',
+	dirs.source + '/js/ext/modernizr-custom.js'
 	// dirs.source + '/js/ext/imask.js',
 	// dirs.source + '/js/ext/perfect-scrollbar.min.js',
 	// dirs.source + '/js/ext/moment.min.js',

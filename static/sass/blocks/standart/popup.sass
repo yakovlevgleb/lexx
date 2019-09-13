@@ -1,17 +1,28 @@
 .hidden-blocks
-	width: 100vw
-	height: 100vh
-	position: relative
-	overflow-y: auto
-	position: fixed
-	top: 0
-	left: 0
-	z-index: 10
-	padding: 100px 0
-	visibility: hidden
-
+	height: 0
 	&.active
-		visibility: visible
+		.hidden-blocks__over
+			overflow-y: scroll
+			z-index: 1000
+
+	&__over
+		padding: 90px 0
+		top: 0
+		left: 0
+		right: 0
+		bottom: 0
+		position: fixed
+		overflow: hidden
+		text-align: center
+		z-index: -1
+
+		&:before
+			content: ""
+			display: inline-block
+			font-size: 0
+			height: 100%
+			vertical-align: middle
+			width: 0	
 
 .popup-bg
 	background-color: $main-blue
@@ -23,7 +34,7 @@
 	z-index: 10
 	visibility: hidden
 	opacity: 0
-	// user-select: none
+
 	transition: .5s height, .05s opacity, .05s visibility
 
 	&.active
@@ -32,10 +43,10 @@
 		opacity: 1
 
 .popup
-	position: absolute
-	left: 50%
-	transform: translate(-50%, -50%)
-	top: 50%
+	text-align: left
+	position: relative
+	display: inline-block
+	vertical-align: middle
 	width: 960px
 	background-color: $white
 	z-index: 101
@@ -43,11 +54,10 @@
 	display: none
 	opacity: 0
 	will-change: opacity
-	margin-bottom: 214px
 
 	&--w510
 		width: 510px
-	
+
 	&--w600
 		width: 600px
 	
@@ -80,8 +90,6 @@
 	@include pad
 		width: 95%
 		padding: 50px 20px
-		top: 50px
-		transform: translate(-50%, 0)
 
 	&__close
 		size: 28px 28px

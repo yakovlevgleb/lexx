@@ -1,0 +1,87 @@
+include blocks/blocks
+
+doctype html
+html(lang="ru")
+	+head('Партнеры и клиенты')
+	body.white.inner
+		+header('/img/logo-black.png')
+		main
+			section.wis-content
+				.wrapper
+					ul.breadcrumbs
+						li.breadcrumbs__item
+							a(href="#").breadcrumbs__link Главная
+						li.breadcrumbs__item
+							span.breadcrumbs__line /
+						li.breadcrumbs__item
+							span.breadcrumbs__link Партнеры и клиенты
+
+					h1 Партнеры и клиенты
+					.partners
+						.partners__items
+							.partners__item
+								a(href="https://www.hoppecke.com/", target="_blank").partners__link
+								.partners__preview
+									img(src="/img/partners/img-1.png", alt="").partners__img
+								.partners__info
+									span.partners__site https://www.hoppecke.com/
+									p.partners__name Hoppecke Batterien
+							.partners__item
+								a(href="https://www.salicru.com/", target="_blank").partners__link
+								.partners__preview
+									img(src="/img/partners/img-2.png", alt="").partners__img
+								.partners__info
+									span.partners__site https://www.salicru.com/
+									p.partners__name SALICRU, S.A.
+							.partners__item
+								a(href="http://www.gazprom.ru/", target="_blank").partners__link
+								.partners__preview
+									img(src="/img/partners/img-3.png", alt="").partners__img
+								.partners__info
+									span.partners__site http://www.gazprom.ru/
+									p.partners__name ПАО «Газпром»
+							.partners__item
+								a(href="https://www.tplusgroup.ru/", target="_blank").partners__link
+								.partners__preview
+									img(src="/img/partners/img-4.png", alt="").partners__img
+								.partners__info
+									span.partners__site https://www.tplusgroup.ru/
+									p.partners__name ООО "КЭС-Холдинг" - ПАО «Т Плюс»
+							.partners__item
+								a(href="http://www.rosseti.ru/", target="_blank").partners__link
+								.partners__preview
+									img(src="/img/partners/img-5.png", alt="").partners__img
+								.partners__info
+									span.partners__site http://www.rosseti.ru/
+									p.partners__name Холдинг МРСК - ПАО "Россети"
+							.partners__item
+								a(href="http://www.novatek.ru/", target="_blank").partners__link
+								.partners__preview
+									img(src="/img/partners/img-6.png", alt="").partners__img
+								.partners__info
+									span.partners__site http://www.novatek.ru/
+									p.partners__name ПАО «НОВАТЭК»
+							.partners__item
+								a(href="https://www.rosneft.ru/", target="_blank").partners__link
+								.partners__preview
+									img(src="/img/partners/img-7.png", alt="").partners__img
+								.partners__info
+									span.partners__site https://www.rosneft.ru/
+									p.partners__name Роснефть
+							.partners__item
+								a(href="https://ekt.rt.ru/", target="_blank").partners__link
+								.partners__preview
+									img(src="/img/partners/img-8.png", alt="").partners__img
+								.partners__info
+									span.partners__site https://ekt.rt.ru/
+									p.partners__name ПАО «Ростелеком»
+							.partners__item
+								a(href="https://www.ugmk.com/", target="_blank").partners__link
+								.partners__preview
+									img(src="/img/partners/img-9.png", alt="").partners__img
+								.partners__info
+									span.partners__site https://www.ugmk.com/
+									p.partners__name Уральская горно-металлургическая компания
+		+footer
+		+hidden-blocks
+	+scripts

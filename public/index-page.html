@@ -173,9 +173,7 @@
               <source src="https://www.w3schools.com/tags/movie.mp4" type="video/mp4"/>
             </video>
             <button class="iabout__video-btn js-play-video" type="button"></button>
-            <video class="js-video">
-              <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4"/>
-            </video>
+            <div class="js-video" id="player" data-link="17k8Ln-kTZo"></div>
           </div>
           <div class="iabout__content">
             <div class="iabout__left">
@@ -186,6 +184,34 @@
             </div><img class="iabout__content-img" src="./img/iabout-img.png" alt=""/>
           </div>
         </div>
+        <script src="https://www.youtube.com/iframe_api"></script>
+        <script>
+          var ytLink = document.querySelector('.js-video');
+          player;
+          if (ytLink) {
+          ytLink = ytLink.getAttribute('data-link');
+          }
+          function onYouTubeIframeAPIReady() {
+          player = new YT.Player('player', {
+          videoId: ytLink,
+          height: '360',
+          width: '640',
+          events: {
+          'onReady': onPlayerReady,
+          }
+          });
+          }
+          function onPlayerReady(){
+          if (document.querySelector('.js-play-video')) {
+          document.querySelector('.js-play-video').addEventListener('click', function () {
+          var videoPoster = document.querySelector('.js-video-poster');
+          videoPoster.style.display = 'none';
+          this.style.display = 'none';
+          player.playVideo();
+          });
+          }
+          }
+        </script>
       </section>
       <section class="inews">
         <div class="wrapper">

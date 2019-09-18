@@ -5,8 +5,7 @@ mixin iabout
 				video(autoplay="true", muted, loop="true").iabout__video-poster.js-video-poster
 					source(src="https://www.w3schools.com/tags/movie.mp4" type="video/mp4")
 				button(type="button").iabout__video-btn.js-play-video
-				video.js-video
-					source(src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4")
+				.js-video#player(data-link="17k8Ln-kTZo")
 
 			.iabout__content
 				.iabout__left
@@ -16,3 +15,31 @@ mixin iabout
 					
 					a(href="#").iabout__link Подробнее о компании 
 				img(src="./img/iabout-img.png", alt="").iabout__content-img
+
+		script(src='https://www.youtube.com/iframe_api')
+		script.
+			var ytLink = document.querySelector('.js-video');
+			player;
+			if (ytLink) {
+			ytLink = ytLink.getAttribute('data-link');
+			}
+			function onYouTubeIframeAPIReady() {
+			player = new YT.Player('player', {
+			videoId: ytLink,
+			height: '360',
+			width: '640',
+			events: {
+			'onReady': onPlayerReady,
+			}
+			});
+			}
+			function onPlayerReady(){
+			if (document.querySelector('.js-play-video')) {
+			document.querySelector('.js-play-video').addEventListener('click', function () {
+			var videoPoster = document.querySelector('.js-video-poster');
+			videoPoster.style.display = 'none';
+			this.style.display = 'none';
+			player.playVideo();
+			});
+			}
+			}

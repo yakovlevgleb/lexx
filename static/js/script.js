@@ -1,6 +1,5 @@
 ﻿"use strict";
 
-
 (function () {
 	window.lexx = {};
 
@@ -306,27 +305,41 @@
 		}
 	};
 
-	window.lexx.playVideo = ({
-		init: function () {
-			var playVideo = document.querySelectorAll('.js-play-video'),
-				videoPoster = document.querySelector('.js-video-poster');
+	// window.lexx.playVideo = ({
+	// 	init: function () {
+	// 		var ytLink = document.querySelector('.js-video'),
+	// 			playVideo = document.querySelector('.js-play-video'),
+	// 			videoPoster = document.querySelector('.js-video-poster')
+	// 			player;
+			
+	// 		if (ytLink) {
+	// 			ytLink = ytLink.getAttribute('data-link');
+	// 		}
 
-			if (playVideo) {
-				playVideo.forEach(function (item) {
-					item.addEventListener('click', function () {
-						var parent = this;
-						fadeOut(item, 0);
-						if (videoPoster) {
-							fadeOut(videoPoster, 0);
-						}
+	// 		function onYouTubeIframeAPIReady() {
+	// 			player = new YT.Player('player', {
+	// 				videoId: ytLink,
+	// 				events: {
+	// 					'width': '100',
+	// 					'height': '100',
+	// 					'onReady': initialize
+	// 				}
+	// 			});
+	// 		}
 
-						parent.parentElement.parentNode.querySelector('.js-video').setAttribute("controls", "controls");
-						parent.parentElement.parentNode.querySelector('.js-video').play();
-					})
-				});
-			}
-		}
-	}).init();
+	// 		if (playVideo) {
+	// 			playVideo.addEventListener('click', function () {
+	// 				var parent = this;
+	// 				fadeOut(this, 0);
+	// 				if (videoPoster) {
+	// 					fadeOut(videoPoster, 0);
+	// 				}
+	// 				player.playVideo();
+	// 			});
+
+	// 		}
+	// 	}
+	// }).init();
 
 	window.lexx.indexAnimation = ({
 		init: function () {

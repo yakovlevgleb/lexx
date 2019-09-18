@@ -3527,6 +3527,7 @@ h1 {
   padding-bottom: 97px; }
   .iabout__video {
     width: 100%;
+    height: 42vw;
     position: relative;
     margin-bottom: 70px;
     overflow: hidden; }
@@ -3535,6 +3536,9 @@ h1 {
       -o-object-fit: cover;
          object-fit: cover;
       font-family: 'object-fit: cover;'; }
+    .iabout__video iframe {
+      width: 100%;
+      height: 100%; }
   .iabout__video-btn {
     position: absolute;
     left: 50%;
@@ -5229,6 +5233,8 @@ h1 {
       .hero__title {
         font-size: 29px;
         line-height: 35px; }
+      .iabout__video {
+        height: 200px; }
       .icatalog__slide {
         width: 100% !important;
         padding: 35px 29px; }
@@ -5265,9 +5271,7 @@ h1 {
             -ms-flex-align: start;
                 align-items: flex-start; }
       .inews__title {
-        margin-bottom: 10px; }
-      .iabout__video {
-        display: none; } }
+        margin-bottom: 10px; } }
     @media only screen and (max-width: 500px) {
     h1 {
       font-size: 26px;

@@ -3670,7 +3670,8 @@ h1 {
     z-index: 10; }
     .icatalog__slider .swiper-container {
       max-width: 1012px;
-      margin-right: 0; }
+      margin-right: 0;
+      width: 100%; }
     .icatalog__slider .swiper-buttons {
       display: -webkit-box;
       display: -ms-flexbox;
@@ -3752,6 +3753,7 @@ h1 {
     bottom: 0;
     right: 0; }
   .icatalog__slider-name {
+    width: 100%;
     max-height: 155px;
     overflow: hidden; }
     .icatalog__slider-name span {

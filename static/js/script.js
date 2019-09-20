@@ -593,6 +593,7 @@
 
 					clusterer.add(geoObjects);
 					myMap.geoObjects.add(clusterer);
+					myMap.behaviors.disable('scrollZoom');
 
 					myMap.setBounds(clusterer.getBounds(), {
 						checkZoomRange: false

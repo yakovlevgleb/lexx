@@ -2965,7 +2965,9 @@ h1 {
   max-width: 100%;
   height: auto;
   max-height: 100%;
-  margin-bottom: 32px; }
+  margin-bottom: 32px;
+  -ms-flex-item-align: start;
+      align-self: flex-start; }
 
 .wis-content figcaption {
   margin-top: -20px;

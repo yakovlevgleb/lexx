@@ -4764,7 +4764,8 @@ h1 {
       line-height: 20px; }
     .wis-content table tr td {
       font-size: 14px;
-      line-height: 20px; }
+      line-height: 20px;
+      padding: 15px; }
     .breadcrumbs {
       margin-bottom: 15px; }
       .breadcrumbs__link {

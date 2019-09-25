@@ -16,13 +16,19 @@
 		text-align: center
 		z-index: -1
 
+		@include mob
+			padding: 0
+
 		&:before
 			content: ""
 			display: inline-block
 			font-size: 0
 			height: 100%
 			vertical-align: middle
-			width: 0	
+			width: 0
+
+			@include mob
+				content: none
 
 .popup-bg
 	background-color: $main-blue
@@ -89,6 +95,10 @@
 	
 	@include pad
 		width: 95%
+		padding: 50px 30px
+	
+	@include mob
+		width: 100%
 		padding: 50px 20px
 
 	&__close
@@ -107,7 +117,7 @@
 			transform: rotate(180deg)
 
 		@include pad
-			filter: brightness(100%) invert(0)
+			filter: brightness(0) invert(0)
 			top: 18px
 			right: 18px
 

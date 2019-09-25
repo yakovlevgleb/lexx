@@ -27,13 +27,19 @@
 			height: 280px
 			margin-bottom: 31px
 		
+		@include sdesktop
+			margin-bottom: 32px
+
 		@include mob
 			width: 100%
 			margin-right: 0
-			padding: 35px 29px;
+			padding: 35px 29px
 
 		&:nth-child(odd)
 			margin-right: 36px
+			
+			@include sdesktop
+			margin-right: 32px
 
 			@include mob
 				margin-right: 0

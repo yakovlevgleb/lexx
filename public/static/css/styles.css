@@ -2095,7 +2095,8 @@ body {
     body.white .header__language span {
       color: #000000; }
     body.white .header__language .choices__list--single .choices__item {
-      color: #000000; }
+      color: #000000;
+      border-color: rgba(0, 0, 0, 0.25); }
     body.white .header__language .choices[data-type*="select-one"]:after {
       width: 6px;
       height: 4px;
@@ -2307,12 +2308,10 @@ h1 {
       .header__btn--search:before {
         content: '';
         position: absolute;
-        left: 50%;
-        top: 50%;
+        left: calc(50% - 6.5px);
+        top: calc(50% - 6.5px);
         width: 13px;
         height: 13px;
-        -webkit-transform: translate(-50%, -50%);
-                transform: translate(-50%, -50%);
         background-size: 13px 13px;
         background-repeat: no-repeat;
         background-position: center;
@@ -2322,12 +2321,10 @@ h1 {
       .header__btn--message:before {
         content: '';
         position: absolute;
-        left: 50%;
-        top: 50%;
+        left: calc(50% - 7px);
+        top: calc(50% - 7px);
         width: 14px;
         height: 14px;
-        -webkit-transform: translate(-50%, -50%);
-                transform: translate(-50%, -50%);
         background-repeat: no-repeat;
         background-position: center;
         background-size: 14px 14px;
@@ -2406,6 +2403,8 @@ h1 {
       .header__language .choices__list--dropdown .choices__list {
         padding: 30px 20px; }
       .header__language .choices__list--dropdown .choices__item--selectable.is-highlighted {
+        background-color: transparent; }
+      .header__language .choices__list--dropdown .choices__item--selectable:hover {
         background-color: transparent;
         opacity: .5; }
     .header__language .choices__item--choice {
@@ -2811,7 +2810,7 @@ h1 {
       line-height: 26px;
       font-weight: 500;
       color: #034ea2;
-      border-bottom: 1px solid #c0d3e8;
+      border-bottom: 1px dotted #c0d3e8;
       -webkit-transition: .5s border-color;
       transition: .5s border-color; }
       .cards__link span:hover {
@@ -3475,7 +3474,7 @@ h1 {
   .hero__title {
     font-size: 72px;
     line-height: 76px;
-    max-width: 750px;
+    max-width: 60%;
     font-weight: 700;
     color: #ffffff; }
   .hero .swiper-buttons {
@@ -3540,6 +3539,7 @@ h1 {
     overflow: hidden; }
     .iabout__video video {
       width: 100%;
+      height: 100%;
       -o-object-fit: cover;
          object-fit: cover;
       font-family: 'object-fit: cover;'; }
@@ -3807,7 +3807,8 @@ h1 {
   margin-bottom: 36px;
   z-index: 2; }
   .products__item:nth-child(odd) {
-    margin-right: 36px; }
+    margin-right: 36px;
+    margin-right: 32px; }
   .products__item:nth-child(odd) .products__over-img {
     right: 0;
     left: auto; }
@@ -3903,12 +3904,9 @@ h1 {
     transition: .4s height; }
   .prod-category__item:hover:before {
     height: 0; }
-  .prod-category__item:hover .prod-category__name {
-    -webkit-transform: translateY(26px);
-            transform: translateY(26px); }
-    .prod-category__item:hover .prod-category__name span {
-      color: #034ea2;
-      border-color: transparent; }
+  .prod-category__item:hover .prod-category__name span {
+    color: #034ea2;
+    border-color: transparent; }
 
 .prod-category__over-img {
   position: relative;
@@ -4027,7 +4025,8 @@ h1 {
     position: relative;
     padding-top: 123%; }
   .prod-card__img {
-    max-width: 100%;
+    max-height: 90%;
+    max-width: 90%;
     position: absolute;
     left: 50%;
     top: 50%;
@@ -4249,7 +4248,7 @@ h1 {
   font-weight: 400;
   color: #000000;
   text-align: center;
-  margin-bottom: 43px; }
+  margin-bottom: 20px; }
   .contacts__form-text a {
     color: #034ea2;
     border-bottom: 1px solid #034ea2;
@@ -4360,7 +4359,8 @@ h1 {
     display: -ms-flexbox;
     display: flex;
     -ms-flex-wrap: wrap;
-        flex-wrap: wrap; }
+        flex-wrap: wrap;
+    width: 100%; }
   .certificates__item {
     position: relative;
     width: calc(100% / 3 - 24px);
@@ -5056,9 +5056,11 @@ h1 {
           display: none; }
       .icatalog__slide {
         width: calc(100% / 2 - 18px) !important;
-        margin-bottom: 36px; }
+        margin-bottom: 32px; }
         .icatalog__slide:nth-child(odd) {
-          margin-right: 36px; }
+          margin-right: 32px; }
+    .products__item {
+      margin-bottom: 32px; }
       .products__item:hover .products__over-img {
         display: none; }
     .prod-category__item {
@@ -5075,9 +5077,11 @@ h1 {
         .certificates__item:nth-child(even) {
           margin-right: 0; }
       .partners__item {
-        width: calc(100% / 2 - 18px); }
+        width: calc(100% / 2 - 18px);
+        margin-bottom: 32px;
+        margin-right: 32px; }
         .partners__item:nth-child(3n+3) {
-          margin-right: 36px; }
+          margin-right: 32px; }
         .partners__item:nth-child(even) {
           margin-right: 0; } }
   @media only screen and (max-width: 1023px) {
@@ -5224,10 +5228,10 @@ h1 {
           margin-bottom: 0; }
     .popup {
       width: 95%;
-      padding: 50px 20px; }
+      padding: 50px 30px; }
       .popup__close {
-        -webkit-filter: brightness(100%) invert(0);
-                filter: brightness(100%) invert(0);
+        -webkit-filter: brightness(0) invert(0);
+                filter: brightness(0) invert(0);
         top: 18px;
         right: 18px; }
     .news-popup__btn {
@@ -5325,7 +5329,10 @@ h1 {
         .header__language .choices[data-type*="select-one"]:after {
           display: none; }
         .header__language .choices__list--dropdown {
-          margin-left: -10px; }
+          margin-left: 0;
+          left: 50%;
+          -webkit-transform: translateX(-50%);
+                  transform: translateX(-50%); }
       .footer__nav-list {
         -webkit-columns: 2;
            -moz-columns: 2;
@@ -5343,6 +5350,13 @@ h1 {
           margin-bottom: 0; }
       .cards__over-pic {
         height: 240px; }
+      .hidden-blocks__over {
+        padding: 0; }
+        .hidden-blocks__over:before {
+          content: none; }
+    .popup {
+      width: 100%;
+      padding: 50px 20px; }
     .project-popup .swiper-button-next {
       width: 48px;
       height: 48px; }
@@ -5363,7 +5377,14 @@ h1 {
       display: flex; }
       .hero__title {
         font-size: 29px;
-        line-height: 35px; }
+        line-height: 35px;
+        max-width: inherit; }
+      .hero .swiper-button-prev:hover {
+        -webkit-transform: rotate(180deg) translateX(0);
+                transform: rotate(180deg) translateX(0); }
+      .hero .swiper-button-next:hover {
+        -webkit-transform: translateX(0);
+                transform: translateX(0); }
       .iabout__video {
         height: 200px; }
       .icatalog__slide {
@@ -5412,6 +5433,8 @@ h1 {
     h1 {
       font-size: 26px;
       line-height: 28px; }
+  .wis-content .wrapper {
+    padding: 0; }
   .wis-content h1 {
     font-size: 26px;
     line-height: 28px; }

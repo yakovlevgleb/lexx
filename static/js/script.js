@@ -353,7 +353,7 @@
 				function firstScrollStatus(e, mParam) {
 					var mDeltaY = mParam === 'scroll' ? e.currentTarget.pageYOffset : e.deltaY;
 					if (firstScroll && mDeltaY > 0) {
-						scrollTo(20, 0);
+						scrollTo(2, 0);
 						e.preventDefault();
 
 						setTimeout(function () {

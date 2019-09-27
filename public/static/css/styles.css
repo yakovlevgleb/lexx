@@ -3817,6 +3817,9 @@ h1 {
     bottom: 0;
     left: auto;
     right: 0; }
+  .products__item:nth-child(even) .products__hover-img {
+    -webkit-transform: scale(-1, 1);
+            transform: scale(-1, 1); }
   .products__item:hover .products__name span {
     border-color: transparent; }
   .products__item:hover .products__bg {
